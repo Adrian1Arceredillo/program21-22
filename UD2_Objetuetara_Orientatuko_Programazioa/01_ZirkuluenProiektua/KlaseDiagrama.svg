@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="21cm" height="11cm" viewBox="393 8 403 217" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <text font-size="18.9538" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="418.344" y="27.3111">
+    <tspan x="418.344" y="27.3111">01_ZirkuluenProiektuko Klase Diagrama</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffff" x="394.602" y="59.5282" width="210.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="394.602" y="59.5282" width="210.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="499.702" y="79.5282">Circle</text>
+    <rect style="fill: #ffffff" x="394.602" y="87.5282" width="210.2" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="394.602" y="87.5282" width="210.2" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="100.728">-radius: double = 1,0</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="116.728">-color: String = "red"</text>
+    <rect style="fill: #ffffff" x="394.602" y="123.528" width="210.2" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="394.602" y="123.528" width="210.2" height="100"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="136.728">+Circle()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="152.728">+Circle(r:double)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="168.728">+Circle(r:double,c:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="184.728">+getRadius(): double</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="200.728">+getColor(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="397.602" y="216.728">+getArea(): double</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="631.514" y="65.7796" width="164" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="631.514" y="65.7796" width="164" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="713.514" y="85.7796">TestCircle</text>
+    <rect style="fill: #ffffff" x="631.514" y="93.7796" width="164" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="631.514" y="93.7796" width="164" height="8"/>
+    <rect style="fill: #ffffff" x="631.514" y="101.78" width="164" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="631.514" y="101.78" width="164" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="634.514" y="114.98">+main(args:String[])</text>
+    <line style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" x1="634.514" y1="116.58" x2="788.514" y2="116.58"/>
+  </g>
+</svg>

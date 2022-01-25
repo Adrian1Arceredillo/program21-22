@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jBoton7" max="32767" attributes="0"/>
+                          <Component id="jBoton4" max="32767" attributes="0"/>
+                          <Component id="jBoton1" max="32767" attributes="0"/>
+                          <Component id="jBotonY" min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jBoton0" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jBotonComa" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jBoton2" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jBoton3" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jBoton5" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jBoton6" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jBoton8" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jBoton9" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jBotonDiv" max="32767" attributes="0"/>
+                          <Component id="jBotonSuma" max="32767" attributes="0"/>
+                          <Component id="jBotonIgual" min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jBotonMulti" max="32767" attributes="0"/>
+                          <Component id="jBotonResta" min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelDatoUno" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelDatoDos" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPrimerValor" max="32767" attributes="0"/>
+                          <Component id="jSegundoValor" pref="70" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jTextoPantalla" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="239" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabelDatoUno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPrimerValor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabelDatoDos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSegundoValor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jTextoPantalla" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBoton7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBoton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBoton9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBotonDiv" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBotonMulti" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBoton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBoton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBoton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBotonSuma" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBotonResta" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jBoton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBoton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBoton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jBotonY" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBoton0" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBotonComa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jBotonIgual" min="-2" pref="62" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="jBotonY">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="y"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonYActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton0">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton0ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBotonComa">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=","/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonComaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="3"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="4"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton4ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="5"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="6"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton6ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="7"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton7ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="8"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton8ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBoton9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="9"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBoton9ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBotonDiv">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xf7;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonDivActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBotonMulti">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="x"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonMultiActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBotonSuma">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonSumaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBotonResta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="-"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonRestaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBotonIgual">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="="/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonIgualActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelDatoUno">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dato 1:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelDatoDos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dato 2:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextoPantalla">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jPrimerValor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jSegundoValor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
