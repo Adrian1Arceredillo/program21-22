@@ -33,7 +33,12 @@ public class Circle {
         this.color = "red";
         System.out.println("Construced a Circle with Circle(radius)");  // for debugging
     }
-
+    
+    /**
+     * Se creará un objeto de tipo Circle, pasándole tanto el valor del 
+     * radio, como el color que tendrá.
+     * @param radius 
+     */
     public Circle(double radius, String color) {
         this.radius = radius;
         this.color = color;
