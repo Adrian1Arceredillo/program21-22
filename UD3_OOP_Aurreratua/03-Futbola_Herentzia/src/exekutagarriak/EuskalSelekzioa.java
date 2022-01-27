@@ -26,10 +26,15 @@ public class EuskalSelekzioa {
         futbolariBat();
         bestePartaideBatzukSortu();
         selekzioOsoaSortu();
-        int ezabatzekoIda = 40;
+
+        int ezabatzekoIda = 4;
         if (partaideaEzabatu(ezabatzekoIda)) {
-            System.out.println(ezabatzekoIda + " id-a duen partaidea ezabatu da.");
+            System.out.println(ezabatzekoIda + " id-a duen partaidea ezabatu da. \n");
+        } else {
+            System.out.println("No se ha eliminado a ningun jugador. \n");
         }
+
+        //System.out.println(selekzioa);
     }
 
     /**
@@ -79,6 +84,7 @@ public class EuskalSelekzioa {
         Masajista mas2 = new Masajista(2, "Ander", "Etxeburu", 51, "Medico", 20);
         System.out.println("Partaideak sortu (Ander Etxaburu): ");
         System.out.println(mas2);
+        System.out.println("----------------------------");
     }
 
     /**
@@ -114,8 +120,11 @@ public class EuskalSelekzioa {
         selekzioa.add(new Masajista(++azkenId, "Iñaki", "Sertxiberrieta", 36, "Fisioterapeuta", 9));
         selekzioa.add(new Masajista(++azkenId, "Ander", "Etxeburu", 51, "Medico", 20));
 
-        System.out.println("----------------------------");
+        System.out.println("SELEKZIO OSOA SORTU: \n");
+        plantillaOsoaIkusi();
+        
 
+        /*
         System.out.println("Plantilla Completa: \n");
         for (int i = 0; i < selekzioa.size(); ++i) {
             if (selekzioa.get(i) != null) {
@@ -124,7 +133,7 @@ public class EuskalSelekzioa {
             }
         }
         System.out.println("----------------------------");
-
+         */
     }
 
     /**
@@ -134,31 +143,41 @@ public class EuskalSelekzioa {
      * @param id Ezabatu nahi den partaidearen ida
      * @return
      */
-    public static boolean partaideaEzabatu(int ida) {
+    public static boolean partaideaEzabatu(int id) {
 
         for (int i = 0; i < selekzioa.size(); ++i) {
             if (selekzioa.get(i) != null) {
-                if (selekzioa.get(i).getEdad() == ida) {
-                    System.out.println(selekzioa.get(i));
+                if (selekzioa.get(i).getId() == id) {
                     selekzioa.remove(i);
-                } else {
-                    return false;
+                    System.out.println("PARTAIDEA EZABATU: \n");
+                    plantillaOsoaIkusi();
+                    return true;
                 }
             }
         }
-
+        /*
+        System.out.println("PARTAIDEA EZABATU: \n");
+        plantillaOsoaIkusi();   //método creado por mí para ver el contenido del arrayList
+        
         System.out.println("----------------------------");
+         */
 
-        System.out.println("Plantilla Completa: \n");
+        return false;
+    }
+
+    
+    /**
+     * Método creado por mí para ver todo el contenido del arrayList llamado
+     * "selekzioa".
+     */
+    public static void plantillaOsoaIkusi() {
+        System.out.println("Uneko Plantilla: \n");
         for (int i = 0; i < selekzioa.size(); ++i) {
             if (selekzioa.get(i) != null) {
                 System.out.println(selekzioa.get(i));
-                //System.out.println(liburuak[i].getIzenburua() + "(" + liburuak[i].getEgilea() + ")");
             }
         }
         System.out.println("----------------------------");
-
-        return false;
     }
 
 }
