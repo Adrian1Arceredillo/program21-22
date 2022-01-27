@@ -123,18 +123,8 @@ public class EuskalSelekzioa {
         System.out.println("SELEKZIO OSOA SORTU: \n");
         plantillaOsoaIkusi();
         
-
-        /*
-        System.out.println("Plantilla Completa: \n");
-        for (int i = 0; i < selekzioa.size(); ++i) {
-            if (selekzioa.get(i) != null) {
-                System.out.println(selekzioa.get(i));
-                //System.out.println(liburuak[i].getIzenburua() + "(" + liburuak[i].getEgilea() + ")");
-            }
-        }
-        System.out.println("----------------------------");
-         */
     }
+    
 
     /**
      * ArrayListetik objektu bat ezabatzen du. Aurkitzen ez badu false itzuliko
@@ -155,20 +145,13 @@ public class EuskalSelekzioa {
                 }
             }
         }
-        /*
-        System.out.println("PARTAIDEA EZABATU: \n");
-        plantillaOsoaIkusi();   //método creado por mí para ver el contenido del arrayList
         
-        System.out.println("----------------------------");
-         */
-
         return false;
     }
 
     
     /**
-     * Método creado por mí para ver todo el contenido del arrayList llamado
-     * "selekzioa".
+     * Método creado por mí para ver todo el contenido del arrayList llamado "selekzioa".
      */
     public static void plantillaOsoaIkusi() {
         System.out.println("Uneko Plantilla: \n");
