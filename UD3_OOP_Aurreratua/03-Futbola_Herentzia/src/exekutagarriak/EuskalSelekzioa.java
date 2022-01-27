@@ -122,9 +122,8 @@ public class EuskalSelekzioa {
 
         System.out.println("SELEKZIO OSOA SORTU: \n");
         plantillaOsoaIkusi();
-        
+
     }
-    
 
     /**
      * ArrayListetik objektu bat ezabatzen du. Aurkitzen ez badu false itzuliko
@@ -145,13 +144,13 @@ public class EuskalSelekzioa {
                 }
             }
         }
-        
         return false;
     }
-
+    
     
     /**
-     * Método creado por mí para ver todo el contenido del arrayList llamado "selekzioa".
+     * Método creado por mí para ver todo el contenido del arrayList llamado
+     * "selekzioa".
      */
     public static void plantillaOsoaIkusi() {
         System.out.println("Uneko Plantilla: \n");
@@ -162,5 +161,57 @@ public class EuskalSelekzioa {
         }
         System.out.println("----------------------------");
     }
+
+    //#####################################
+    
+    /**
+     * Este método se ha creado para introducir datos en el arrayList definido 
+     * en la parte superior de esta clase, y para PODER LLAMAR a este arrayList, 
+     * y a su contenido, DESDE OTRA CLASE.
+     * 
+     * Para ello, el tipo del método dejará de ser "void", y será del siguiente 
+     * tipo: 
+     *  -> public static ArrayList<objeto> + nombre()
+     * 
+     * Selekzio osoaren datuak gorde "selekzioa" deitutako IntegranteSeleccion
+     * klaseko ArrayList estatiko baten.
+     *
+     */
+    /*
+    public static ArrayList<IntegranteSeleccion> selekzioarenPlantillaOsoaSortu() {
+        //ArrayList<IntegranteSeleccion> selekzioa = new ArrayList<IntegranteSeleccion>();
+
+        selekzioa.add(new Futbolista(++azkenId, "Aitor", "Fernandez", 30, 1, Demarkazioa.POR));
+        selekzioa.add(new Futbolista(++azkenId, "Unai", "Bustinza", 29, 2, Demarkazioa.DEF));
+        selekzioa.add(new Futbolista(++azkenId, "Mikel", "Balenziaga", 33, 3, Demarkazioa.DEF));
+        selekzioa.add(new Futbolista(++azkenId, "Asier", "Illarramendi", 31, 4, Demarkazioa.MED));
+        selekzioa.add(new Futbolista(++azkenId, "Iñigo", "Martinez", 30, 5, Demarkazioa.DEF));
+        selekzioa.add(new Futbolista(++azkenId, "Mikel", "San Jose", 32, 6, Demarkazioa.MED));
+        selekzioa.add(new Futbolista(++azkenId, "Gaizka", "Larrazabal", 24, 7, Demarkazioa.DEF));
+        selekzioa.add(new Futbolista(++azkenId, "Manu", "Garcia", 35, 8, Demarkazioa.MED));
+        selekzioa.add(new Futbolista(++azkenId, "Aritz", "Aduriz", 40, 9, Demarkazioa.DEL));
+        selekzioa.add(new Futbolista(++azkenId, "Javier", "Eraso", 31, 10, Demarkazioa.MED));
+        selekzioa.add(new Futbolista(++azkenId, "Asier", "Villalibre", 24, 11, Demarkazioa.DEL));
+        selekzioa.add(new Futbolista(++azkenId, "Aihen", "Muñoz", 24, 12, Demarkazioa.DEF));
+        selekzioa.add(new Futbolista(++azkenId, "Iago", "Herrerin", 34, 13, Demarkazioa.POR));
+        selekzioa.add(new Futbolista(++azkenId, "Aritz", "Elustondo", 27, 14, Demarkazioa.DEF));
+        selekzioa.add(new Futbolista(++azkenId, "Jesus", "Areso", 22, 15, Demarkazioa.DEF));
+        selekzioa.add(new Futbolista(++azkenId, "Iñigo", "Vicente", 24, 16, Demarkazioa.DEL));
+        selekzioa.add(new Futbolista(++azkenId, "Daniel", "Vivian", 22, 17, Demarkazioa.DEF));
+
+        selekzioa.add(new Entrenador(++azkenId, "Francisco", "Padalino", 52, "Entrenador"));
+        selekzioa.add(new Entrenador(++azkenId, "Joseba", "Nuñez", 44, "Entrenador"));
+        selekzioa.add(new Entrenador(++azkenId, "Markel", "Lautadahandi", 52, "Entrenador de porteros"));
+
+        selekzioa.add(new Masajista(++azkenId, "Iñaki", "Sertxiberrieta", 36, "Fisioterapeuta", 9));
+        selekzioa.add(new Masajista(++azkenId, "Ander", "Etxeburu", 51, "Medico", 20));
+
+        System.out.println("SELEKZIO OSOA SORTU: \n");
+        plantillaOsoaIkusi();
+        
+        return null;
+
+    }
+    */
 
 }

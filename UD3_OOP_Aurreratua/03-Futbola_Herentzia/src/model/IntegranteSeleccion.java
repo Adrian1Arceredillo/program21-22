@@ -137,9 +137,9 @@ public class IntegranteSeleccion {
     }
 
     public String toString() {
-        return "\tId= " + this.getId() + "\n" + 
-                "\tNombre= " + this.getNombre() +  "\n" + 
-                "\tApellidos= " + this.getApellidos() + "\n" + 
+        return "\tId= " + this.getId() + "," + 
+                "\tNombre= " + this.getNombre() +  "," + 
+                "\tApellidos= " + this.getApellidos() + "," +
                 "\tEdad= " + this.getEdad() + "\n" ;
     }
 

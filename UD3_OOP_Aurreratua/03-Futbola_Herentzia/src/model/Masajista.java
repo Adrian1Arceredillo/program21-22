@@ -100,12 +100,12 @@ public class Masajista extends IntegranteSeleccion {
     
     @Override
     public String toString() {
-        return "\tId = " + this.getId() + "\n" + 
-                "\tNombre = " + this.getNombre() + "\n" + 
-                "\tApellido = " + this.getApellidos() + "\n" + 
-                "\tEdad = " + this.getEdad() + "\n" + 
-                "\tTitulacion = " + this.getTitulacion() + "\n" + 
-                "\tAños de Experiencia = " + this.getAñosExperiencia() + "\n";
+        return "\tId = " + this.getId() + ", " +  
+                "Nombre = " + this.getNombre() + ", " +  
+                "Apellido = " + this.getApellidos() + ", " +  
+                "Edad = " + this.getEdad() + ", " +  
+                "Titulacion = " + this.getTitulacion() + ", " +  
+                "Años de Experiencia = " + this.getAñosExperiencia() + "\n";
     }
     
     

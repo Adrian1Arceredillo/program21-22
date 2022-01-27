@@ -84,11 +84,11 @@ public class Entrenador extends IntegranteSeleccion {
     
     @Override
     public String toString() {
-        return "\tId = " + this.getId() + "\n" + 
-                "\tNombre = " + this.getNombre() + "\n" + 
-                "\tApellido = " + this.getApellidos() + "\n" + 
-                "\tEdad = " + this.getEdad() + "\n" + 
-                "\tId Federacion = " + this.getIdFederacion() + "\n";
+        return "\tId = " + this.getId() + ", " +  
+                "Nombre = " + this.getNombre() + ", " +  
+                "Apellido = " + this.getApellidos() + ", " +  
+                "Edad = " + this.getEdad() + ", " +  
+                "Id Federacion = " + this.getIdFederacion() + "\n";
     }
     
 }
