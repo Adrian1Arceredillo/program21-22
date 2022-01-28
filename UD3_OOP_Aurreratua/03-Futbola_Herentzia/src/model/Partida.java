@@ -41,6 +41,24 @@ public class Partida extends Futbolista {
         this.aurkaria = aurkaria;
     }
     
+    
+    /**
+     * Método que creará una nueva partida. En este caso, este método 
+     * recibe como parámetros de entrada, la fecha en la que se jugará, 
+     * el nombre del contrario, y un array que recoge los jugadores que 
+     * han recibido una tarjeta.
+     * 
+     * @param data
+     * @param aurkaria 
+     */
+    public Partida(LocalDate data, String aurkaria, ArrayList<Futbolista> jugadoresAmonestados) {
+        this.data = data;
+        this.aurkaria = aurkaria;
+        this.txartelak = jugadoresAmonestados;
+    }
+    
+    
+    
     /**
      * Método que devuelve el valor del atributo "data". Este hace 
      * referencia a CÚANDO se realizará la partida correspondiente.
@@ -105,6 +123,12 @@ public class Partida extends Futbolista {
         this.txartelak = txartelak;
     }
     
-    
+    @Override
+    public String toString() {
+        return "\tData: " + this.getData() + ", \n" + 
+                "\tAurkaria: " + this.getAurkaria() + ", \n" + 
+                "\tTxartelak: \n" + this.getTxartelak();
+                
+    }
     
 }

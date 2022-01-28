@@ -71,7 +71,7 @@ public class EuskalSelekzioaMenua {
                     System.out.println("");
                     aukeraEgokia = true;
                 } catch (InputMismatchException ex) {
-                    System.out.println(" -> Kontuz!! Zenbaki bat sartu behar duzu.");
+                    System.out.println(" -> Kontuz!! Zenbaki bat sartu behar duzu. \n");
                     sc.next(); //scannerrean geratu dan elementua hustuteko
                 }
             } while(!aukeraEgokia);
@@ -92,6 +92,8 @@ public class EuskalSelekzioaMenua {
                     break;
                 case 3:
                     futbolarienIzenakOrdenatu();    //utilizando el método de ordenación burbuja
+                    //ordenarEdadFutbolistasBurbuja();    //ordenar futbolistas según su EDAD (método burbuja)
+                    //futbolistakAlfabetikoki();  //utilizando el método sort()
                     break;
                 case 4:
                     jokalariBatOrdezkatu();
@@ -102,18 +104,11 @@ public class EuskalSelekzioaMenua {
                 case 6:
                     System.out.println("Irteten... \nFIN. \n");
                     break;
-                    
-                case 8:
-                    ordenarEdadFutbolistasBurbuja();    //ordenar futbolistas según su EDAD (método burbuja)
-                    break;
-                case 9:
-                    futbolistakAlfabetikoki();  //utilizando el método sort()
-                    break;
                 case 'z':
                     System.out.println("Irteten...\nFIN. ");
                     break;
                 default:
-                    System.out.println("Aukera okerra. Saiatu berriz.");
+                    System.out.println(" -> Aukera okerra. Saiatu berriz.");
             }
         } while (aukera != 6);
         
