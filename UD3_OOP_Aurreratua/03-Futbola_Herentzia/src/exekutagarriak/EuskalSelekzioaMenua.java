@@ -91,9 +91,10 @@ public class EuskalSelekzioaMenua {
                     //System.out.println(selekzioa);
                     break;
                 case 3:
-                    futbolarienIzenakOrdenatu();    //utilizando el método de ordenación burbuja
+                    //futbolarienIzenakOrdenatu();    //utilizando el método de ordenación burbuja
+                    //futbolarienIzenakOrdenatu2();
                     //ordenarEdadFutbolistasBurbuja();    //ordenar futbolistas según su EDAD (método burbuja)
-                    //futbolistakAlfabetikoki();  //utilizando el método sort()
+                    futbolistakAlfabetikoki();  //utilizando el método sort()
                     break;
                 case 4:
                     jokalariBatOrdezkatu();
@@ -234,7 +235,7 @@ public class EuskalSelekzioaMenua {
         for(int i = 0; i < selekzioa.size(); ++i) {
             if (selekzioa.get(i) != null) {
                 if (selekzioa.get(i).getClass() == Futbolista.class) {
-                    futbolarienIzenak.add(selekzioa.get(i).getNombre());
+                    futbolarienIzenak.add(selekzioa.get(i).getNombre() + selekzioa.get(i).getApellidos());
                     //System.out.println(selekzioa.get(i));
                     Collections.sort(futbolarienIzenak);  
                 }
@@ -348,6 +349,7 @@ public class EuskalSelekzioaMenua {
         
         return selekzioaIzenak;
     }
+    
     
     
     /**

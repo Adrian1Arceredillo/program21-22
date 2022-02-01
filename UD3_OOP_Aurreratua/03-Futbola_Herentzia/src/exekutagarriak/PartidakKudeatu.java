@@ -10,6 +10,11 @@ import java.time.*; //import java.time.LocalDate;   //import java.time.Month;   
 import exekutagarriak.*;
 import model.*;
 import static exekutagarriak.EuskalSelekzioaMenua.azkenId;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+
+
 
 
 /**
@@ -51,7 +56,7 @@ public class PartidakKudeatu {
         partidakAsmatu();
         
         //partida nueva con DATOS METIDOS POR EL USUARIO
-        partidaBatenDatuakEskatu();
+        //partidaBatenDatuakEskatu();
         
         //calcular e imprimir estadísticas
         System.out.println("ESTATISTIKAK BISTARATU: ");
@@ -59,7 +64,7 @@ public class PartidakKudeatu {
         
         
         //ver el contenido del array de las partidas jugadas ("partidaGuztiak[]")
-        System.out.println(Arrays.toString(partidaGuztiak));
+        //System.out.println(Arrays.toString(partidaGuztiak));
         
     }
     
@@ -348,7 +353,11 @@ public class PartidakKudeatu {
     }
     
     
-    
+    /**
+     * Método para obtner diferentes estadísticas sobre las partidas. Algunas de 
+     * esas posibles estadísticas son las siguientes:
+     * 
+     */
     public static void estatistikakKalkulatu() {
         System.out.println("");
         
@@ -359,11 +368,47 @@ public class PartidakKudeatu {
                 ++partidasJugadas;
             }
         }
-        System.out.println("\t-> Jokatutako partida kopurua: " + partidasJugadas); 
+        System.out.println("\t-> Jokatutako partida kopurua: " + partidasJugadas);
+        System.out.println("");
         
+        
+        //número de tarjetas que ha recibido cada jugador
+        int numeroJugadoresAmonestados = 0;
+        for (int i = 0; i < partidaGuztiak.length; ++i) {
+            if (partidaGuztiak[i] != null) {
+                ++numeroJugadoresAmonestados;
+            }
+            
+        }
+        //System.out.println(numeroJugadoresAmonestados);
+        
+        
+        //media de días a los que se juega una partida (cada cuantos días)
+        ArrayList<LocalDate> partidenData = new ArrayList<LocalDate>(); //arrayList que recogerá las fechas de todas las partidas
+        
+        for (int i = 0; i < partidaGuztiak.length; ++i) {
+            if (partidaGuztiak[i] != null) {
+                partidenData.add(partidaGuztiak[i].getData());
+            }
+        }
+        System.out.println("Fechas de las partidas (SIN ORDENAR): " + partidenData); //sin ordenar
+        
+        Collections.sort(partidenData);
+        System.out.println("Fechas de las partidas (ORDENADAS): " + partidenData);  //ORDENADAS
+        
+        
+        //PROVISIONAL - crear lo mismo pero con todos los datos (fechas) de partidenData
+        LocalDate f1 = partidenData.get(0);
+        LocalDate f2 = partidenData.get(1);
+        
+        long diff = ChronoUnit.DAYS.between(f1, f2);
+        System.out.println(diff);
         
         System.out.println("");
-        System.out.println("----------------");
+        System.out.println(partidenData);
+        
+        
+        
     }
     
 }
