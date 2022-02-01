@@ -19,6 +19,7 @@ public class Partida extends Futbolista {
     private LocalDate data;
     private String aurkaria;    //esto haría referencia al nombre del contrario
     private ArrayList<Futbolista> txartelak = new ArrayList<Futbolista>();
+    private int id = 0;
     
     
     /**
@@ -52,6 +53,7 @@ public class Partida extends Futbolista {
      * @param aurkaria 
      */
     public Partida(LocalDate data, String aurkaria, ArrayList<Futbolista> jugadoresAmonestados) {
+        this.id = ++id;
         this.data = data;
         this.aurkaria = aurkaria;
         this.txartelak = jugadoresAmonestados;
@@ -126,9 +128,26 @@ public class Partida extends Futbolista {
     @Override
     public String toString() {
         return "\tData: " + this.getData() + ", \n" + 
-                "\tAurkaria: " + this.getAurkaria() + ", \n" + 
+                "\tAurkaria: " + this.getAurkaria() + ", \n\n" + 
                 "\tTxartelak: \n" + this.getTxartelak();
                 
     }
     
 }
+
+/*
+Antes de especificar qué jugadores (tipo Futbolista) recibirán una tarjeta, es necesario  filtrar, por tipo (clases), cada elemento 
+        del arrayList general ("selekzioa"). En este caso, tendremos que hacer una selección de todos los elementos que sean "Futbolista".
+        
+        Todos los elementos Futbolista de cada partida, se guardarán en un nuevo arrayList correspondiente a cada partida. Por último, se 
+        realizará una selección aleatoria de 2 jugadores de cada partida. Estos jugadores serán los amonestados. 
+
+
+
+ //arrayList de elementos de tipo Futbolista de cada partida
+        ArrayList<Futbolista> jugadoresP1 = new ArrayList<Futbolista>();    //partida 1
+        ArrayList<Futbolista> jugadoresP2 = new ArrayList<Futbolista>();    //partida 2
+        ArrayList<Futbolista> jugadoresP3 = new ArrayList<Futbolista>();    //partida 3
+        ArrayList<Futbolista> jugadoresP4 = new ArrayList<Futbolista>();    //partida 4
+        ArrayList<Futbolista> jugadoresP5 = new ArrayList<Futbolista>();    //partida 5
+*/
