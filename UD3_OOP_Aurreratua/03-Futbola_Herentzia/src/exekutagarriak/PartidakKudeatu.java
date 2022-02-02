@@ -13,6 +13,7 @@ import static exekutagarriak.EuskalSelekzioaMenua.azkenId;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+//import java.util.LinkedHashSet;
 
 
 
@@ -59,7 +60,8 @@ public class PartidakKudeatu {
         //partidaBatenDatuakEskatu();
         
         //calcular e imprimir estadísticas
-        System.out.println("ESTATISTIKAK BISTARATU: ");
+        System.out.println(ANSI_BLUE_BACKGROUND + "ESTATISTIKAK BISTARATU: ");
+        
         estatistikakKalkulatu();
         
         
@@ -140,12 +142,14 @@ public class PartidakKudeatu {
         ArrayList<Futbolista> txartelakPartida6 = new ArrayList<Futbolista>();   //jugadores amonestados (partida 6)
         
         //definir las fechas de las 5 partidas
+        
         LocalDate data1 = LocalDate.of(2020, 1, 8); //fecha partida 1
         LocalDate data2 = LocalDate.of(2019, 6, 21); //fecha partida 2
         LocalDate data3 = LocalDate.of(2021, 7, 13); //fecha partida 3
         LocalDate data4 = LocalDate.of(1999, 10, 2); //fecha partida 4
         LocalDate data5 = LocalDate.of(1983, 4, 6); //fecha partida 5
-        LocalDate data6 = LocalDate.of(9003, 10, 9); //fecha partida 5
+        LocalDate data6 = LocalDate.of(2022, 1, 9); //fecha partida 5
+        
         
         //definir los adversarios de las 5 partidas
         String aurkari1 = "FC Barcelona"; //adversario partida 1
@@ -210,6 +214,7 @@ public class PartidakKudeatu {
         //AÑADIR jugadores al arrayList de tarjetas - PARTIDA 1
         txartelakPartida1.add((Futbolista) selekzioa.get(p1Jugador1));
         txartelakPartida1.add((Futbolista) selekzioa.get(p1Jugador2));
+        txartelakPartida1.add((Futbolista) selekzioa.get(p1Jugador2));  //mismo jugador para hacer pruebas 02/02/2022
         
         //AÑADIR jugadores al arrayList de tarjetas - PARTIDA 2
         txartelakPartida2.add((Futbolista) selekzioa.get(p2Jugador1));
@@ -361,18 +366,18 @@ public class PartidakKudeatu {
     public static void estatistikakKalkulatu() {
         System.out.println("");
         
-        //número de partidas jugadas
+        //DATO 1 - número de partidas jugadas
         int partidasJugadas = 0;
         for (int i = 0; i < partidaGuztiak.length; ++i) {
             if (partidaGuztiak[i] != null) {
                 ++partidasJugadas;
             }
         }
-        System.out.println("\t-> Jokatutako partida kopurua: " + partidasJugadas);
+        System.out.println("-> Jokatutako partida kopurua: " + partidasJugadas);
         System.out.println("");
         
         
-        //número de tarjetas que ha recibido cada jugador
+        //DATO 2 - número de tarjetas que ha recibido cada jugador
         int numeroJugadoresAmonestados = 0;
         for (int i = 0; i < partidaGuztiak.length; ++i) {
             if (partidaGuztiak[i] != null) {
@@ -381,9 +386,9 @@ public class PartidakKudeatu {
             
         }
         //System.out.println(numeroJugadoresAmonestados);
+        //System.out.println("########################################");
         
-        
-        //media de días a los que se juega una partida (cada cuantos días)
+        //DATO 3 - media de días a los que se juega una partida (cada cuantos días)
         ArrayList<LocalDate> partidenData = new ArrayList<LocalDate>(); //arrayList que recogerá las fechas de todas las partidas
         
         for (int i = 0; i < partidaGuztiak.length; ++i) {
@@ -391,23 +396,143 @@ public class PartidakKudeatu {
                 partidenData.add(partidaGuztiak[i].getData());
             }
         }
-        System.out.println("Fechas de las partidas (SIN ORDENAR): " + partidenData); //sin ordenar
         
-        Collections.sort(partidenData);
-        System.out.println("Fechas de las partidas (ORDENADAS): " + partidenData);  //ORDENADAS
+        //System.out.println("Fechas de las partidas (SIN ORDENAR): " + partidenData); //fechas SIN ORNDENAR
+        
+        Collections.sort(partidenData); //ordenar el arrayList de las partidas, de fecha más vieja, a fecha más nueva
+        //System.out.println("Fechas de las partidas (ORDENADAS): " + partidenData);    //fechas ORDENADAS
         
         
-        //PROVISIONAL - crear lo mismo pero con todos los datos (fechas) de partidenData
-        LocalDate f1 = partidenData.get(0);
-        LocalDate f2 = partidenData.get(1);
+        long diffDias = 0;  //variable que recogerá los DÍAS TOTALES que hay (SIN PARTIDAS), partiendo desde la primera hasta la última
+        LocalDate fecha1;
+        LocalDate fecha2;
+        double mediaDeDiasEntrePartidas;   //variable que guardará el valor de la media de días
         
-        long diff = ChronoUnit.DAYS.between(f1, f2);
-        System.out.println(diff);
+        /*crear una variable que haga referencia al número de "parones" que hay entre partidas. Entre una partida y 
+        otra, habrá X separación (habrá X "parón"). Este valor se utilizará para calcular la MEDIA DE LOS DÍAS que 
+        pasan entre partida y partida. */
+        int numHuecosEntrePartidas = 0;
+        
+        //crear un for que irá calculando y guardando los días que hay entre cada una de las partidas
+        for (int i = 1; i < partidenData.size(); ++i) { 
+            fecha1 = partidenData.get(i - 1);
+            fecha2 = partidenData.get(i);
+            
+            //variable que guarda cuántos días hay entre 2 DE FECHAS (partidas)
+            int cada2FechasDias = (int) ChronoUnit.DAYS.between(fecha1, fecha2);
+            
+            diffDias = diffDias + cada2FechasDias;  //esta variable va recogiendo todos los días que haya (SIN PARTIDAS) entre fechas
+            ++numHuecosEntrePartidas;
+        }
+        
+        mediaDeDiasEntrePartidas = (double) diffDias / numHuecosEntrePartidas;   //calcular la media
+        System.out.println("-> Media de días entre partidas: " + mediaDeDiasEntrePartidas);
+        System.out.println("\n-> Suma de días (libres) sin partidas: " + diffDias);
+        System.out.println("");
+        
+        //System.out.println("");
+        //System.out.println("########################################");
+        
+        
+        //DATO 4 - cuántas tarjetas tiene cada jugador
+        ArrayList<Futbolista> tarjetasTodasLasPartidas = new ArrayList<Futbolista>();
+        for (int i = 0; i < partidaGuztiak.length; ++i) {
+            if (partidaGuztiak[i] != null) {
+                for (int j = 0; j < partidaGuztiak[i].getTxartelak().size(); ++j) {
+                    tarjetasTodasLasPartidas.add(partidaGuztiak[i].getTxartelak().get(j));
+                }
+            }
+        }
+        
+        LinkedHashSet<Futbolista> tarjetasFutSinRepetir = new LinkedHashSet<Futbolista>(tarjetasTodasLasPartidas);  
+        ArrayList<Futbolista> tarjetasSinDuplicados = new ArrayList<Futbolista>(tarjetasFutSinRepetir);
+        
+        /*
+        //contar cuántas tarjetas tiene cada jugador amonestado (cuántas veces aparece)
+        int vecesCadaJugador = 0;
+        for (int i = 0; i < tarjetasTodasLasPartidas.size(); ++i) {
+            vecesCadaJugador = Collections.frequency(tarjetasTodasLasPartidas, tarjetasTodasLasPartidas.get(i));
+            System.out.println(vecesCadaJugador + " - > " +  tarjetasTodasLasPartidas.get(i).getNombre());
+            System.out.println("");
+        }
+        */
+        
+        System.out.println("-> Cantidad de tarjetas de cada jugador: \n");
+        System.out.printf("\t%-23s %-7s %-30s\n", "FUTBOLISTA ", "|", "TXARTELAK ");
+        
+        for (int x = 0; x < 42; x++) {
+            if (x == 0) {
+                System.out.print("\t");
+            }
+            System.out.print("=");
+        }
+        System.out.println("");
+        
+        
+        //COMPARAR ELEMENTOS (jugadores) REPETIDOS
+        int numeroTarjetasCadaJugador = 0;  //variable que recogerá el número de tarjetas que tiene cada jugador
+        
+        ArrayList nombresDeAmonestados = new ArrayList();
+        
+        int cantMaxTarjetas = 0;
+        String nombreMaxTarjetas = "";  //variable que hará referencia al JUGADOR que haya recibido MÁS TARJETAS
+        int cantMinTarjetas = 0;
+        String nombreMinTarjetas = "";  //variable que hará referencia al JUGADOR que haya recibido MENOS TARJETAS
+        
+        // recorremos los valores del array tarjetasSinDuplicados
+        for(int i=0;i<tarjetasSinDuplicados.size();i++){    //for que compara cuántas veces aparece cada elemento de un arrayList, en otro arrayList
+            // recorremos los valores del array tarjetasTodasLasPartidas
+            for(int j=0;j<tarjetasTodasLasPartidas.size();j++){
+                // Cada valor del arrayList "tarjetasSinDuplicados" lo comparemos con todos los valores del arrayList "tarjetasTodasLasPartidas"
+                if(tarjetasSinDuplicados.get(i).getId() == tarjetasTodasLasPartidas.get(j).getId()) {
+                    
+                    nombresDeAmonestados.add(tarjetasSinDuplicados.get(i).getNombre());
+                    nombresDeAmonestados.add(2);
+                    numeroTarjetasCadaJugador++;
+                    
+                    
+                }    
+            }
+            
+            System.out.printf("\t%-6s %-24s", tarjetasSinDuplicados.get(i).getNombre(), tarjetasSinDuplicados.get(i).getApellidos());
+            System.out.printf("\t%5s %d \n","kop.", numeroTarjetasCadaJugador);
+            
+            
+            //definir jugador con MÁS tarjetas
+            if (i == 0) {
+                cantMaxTarjetas = numeroTarjetasCadaJugador;
+                nombreMaxTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
+            }
+            if (numeroTarjetasCadaJugador > cantMaxTarjetas) {
+                cantMaxTarjetas = numeroTarjetasCadaJugador;
+                nombreMaxTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
+            }
+            
+            //definir jugador con MÁS tarjetas
+            if (i == 0) {
+                cantMinTarjetas = numeroTarjetasCadaJugador;
+                nombreMinTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
+            }
+            if (numeroTarjetasCadaJugador < cantMinTarjetas) {
+                cantMinTarjetas = numeroTarjetasCadaJugador;
+                nombreMinTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
+            }
+            
+            numeroTarjetasCadaJugador=0;
+        }
+        
+        System.out.println("Máx. tarjetas: " + cantMaxTarjetas + "  /   Jugador: " + nombreMaxTarjetas);
+        System.out.println("Min. tarjetas: " + cantMinTarjetas + "  /   Jugador: " + nombreMinTarjetas);
         
         System.out.println("");
-        System.out.println(partidenData);
+        System.out.println(tarjetasTodasLasPartidas);
+        System.out.println("");
+        //https://howtodoinjava.com/java/collections/arraylist/remove-duplicate-elements/#:~:text=To%20remove%20the%20duplicates%20from,toList()%20.
         
         
+        //DATO 5 - jugador con MÁS TARJETAS y jugador con MENOS TARJETAS
+        System.out.println("-> Jugador con MÁS tarjetas: \n");
+        //for 
         
     }
     

@@ -133,6 +133,15 @@ public class Partida extends Futbolista {
                 
     }
     
+    /**
+     * Método que permite asignarle una tarjeta a un jugador que se 
+     * le pase como parámetro de entrada. 
+     * @param jokalaria 
+     */
+    public void txartelaJarri(Futbolista jokalaria) {
+        this.txartelak.add(jokalaria);
+    }
+    
 }
 
 /*
