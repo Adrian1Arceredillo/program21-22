@@ -160,7 +160,7 @@ public class EuskalSelekzioa {
         System.out.println("Uneko Plantilla: \n");
         for (int i = 0; i < selekzioa.size(); ++i) {
             if (selekzioa.get(i) != null) {
-                System.out.println(selekzioa.get(i));
+                System.out.println("\t" + selekzioa.get(i));
             }
         }
         System.out.println("----------------------------");

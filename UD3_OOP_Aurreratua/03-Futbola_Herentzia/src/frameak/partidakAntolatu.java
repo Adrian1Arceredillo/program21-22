@@ -14,6 +14,8 @@ import model.*;
 import exekutagarriak.*;
 import static exekutagarriak.EuskalSelekzioaMenua.selekzioa;
 import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JFrame;
 
 
 /**
@@ -26,15 +28,21 @@ public class partidakAntolatu extends javax.swing.JFrame {
     public static ArrayList<Futbolista> futbolistasSeleccion = new ArrayList<Futbolista>(); //arrayList que contiene solamente elementos del tipo FUTBOLISTA
     public static int cantidadJugadoresTarjeta = 0;
     
-    ArrayList<Futbolista> jugadoresTodasLasTarjetas = new ArrayList<Futbolista>();    //arrayList que guardará los nombres de todos los jugadores amonestados (CON REPETIDOS)
+    public static ArrayList<Futbolista> jugadoresTodasLasTarjetas = new ArrayList<Futbolista>();    //arrayList que guardará los nombres de todos los jugadores amonestados (CON REPETIDOS)
+    public static ArrayList<Masajista> niJugadorNiEntrenador = new ArrayList<Masajista>();  //arrayList para separar los de tipo Masajista (Fisioterapeuta y Médico)
     /**
      * Creates new form partidakAntolatu
      */
     public partidakAntolatu() {
+        this.setTitle("Partidak Antolatu - Adrian");
+        this.setPreferredSize(new Dimension(1000, 900));
         initComponents();
         
         InfoJugadores.setLineWrap(true);
-        PlantillaGeneral.setLineWrap(true);
+        PlantillaJugadores.setLineWrap(true);
+        PlantillaEntrenadores.setLineWrap(true);
+        PlantillaMedicos.setLineWrap(true);
+        PlantillaOtros.setLineWrap(true);
         
     }
 
@@ -57,7 +65,17 @@ public class partidakAntolatu extends javax.swing.JFrame {
         InfoJugadores = new javax.swing.JTextArea();
         RegistroTarjetas = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        PlantillaGeneral = new javax.swing.JTextArea();
+        PlantillaJugadores = new javax.swing.JTextArea();
+        FiltroJugadores = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        PlantillaEntrenadores = new javax.swing.JTextArea();
+        FiltroEntrenadores = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        PlantillaMedicos = new javax.swing.JTextArea();
+        FiltroMedicos = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        PlantillaOtros = new javax.swing.JTextArea();
+        FiltroOtros = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,10 +117,33 @@ public class partidakAntolatu extends javax.swing.JFrame {
             }
         });
 
-        PlantillaGeneral.setColumns(20);
-        PlantillaGeneral.setRows(5);
-        PlantillaGeneral.setText("Toda la plantilla");
-        jScrollPane2.setViewportView(PlantillaGeneral);
+        PlantillaJugadores.setColumns(20);
+        PlantillaJugadores.setRows(5);
+        PlantillaJugadores.setText("Informacion del personal");
+        jScrollPane2.setViewportView(PlantillaJugadores);
+
+        FiltroJugadores.setText("Jugadores: ");
+
+        PlantillaEntrenadores.setColumns(20);
+        PlantillaEntrenadores.setRows(5);
+        PlantillaEntrenadores.setText("Informacion del personal");
+        jScrollPane3.setViewportView(PlantillaEntrenadores);
+
+        FiltroEntrenadores.setText("Entrenadores: ");
+
+        PlantillaMedicos.setColumns(20);
+        PlantillaMedicos.setRows(5);
+        PlantillaMedicos.setText("Informacion del personal");
+        jScrollPane4.setViewportView(PlantillaMedicos);
+
+        FiltroMedicos.setText("Medicos: ");
+
+        PlantillaOtros.setColumns(20);
+        PlantillaOtros.setRows(5);
+        PlantillaOtros.setText("Informacion del personal");
+        jScrollPane5.setViewportView(PlantillaOtros);
+
+        FiltroOtros.setText("Otros: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,26 +152,38 @@ public class partidakAntolatu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(VerNombresJugadores)
-                        .addGap(18, 18, 18)
-                        .addComponent(CrearPlantilla)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RegistroTarjetas)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTitulo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(VerNombresJugadores)
+                                .addGap(18, 18, 18)
+                                .addComponent(CrearPlantilla)
+                                .addGap(18, 18, 18)
+                                .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(FiltroJugadores))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RandomPlayerAdd)
+                            .addComponent(ElegirRandomPonerT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RegistroTarjetas))
                         .addGap(77, 77, 77))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ElegirRandomPonerT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RandomPlayerAdd)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(104, 104, 104)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(148, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(FiltroOtros)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane5)
+                            .addComponent(FiltroMedicos, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .addComponent(FiltroEntrenadores, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,18 +195,30 @@ public class partidakAntolatu extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(VerNombresJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CrearPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(32, 32, 32)
-                .addComponent(ElegirRandomPonerT)
-                .addGap(18, 18, 18)
+                    .addComponent(CrearPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ElegirRandomPonerT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RandomPlayerAdd)
+                .addGap(11, 11, 11)
+                .addComponent(FiltroJugadores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addComponent(FiltroEntrenadores)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(FiltroMedicos)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(FiltroOtros)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         pack();
@@ -186,7 +251,6 @@ public class partidakAntolatu extends javax.swing.JFrame {
     private void CrearPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPlantillaActionPerformed
         // TODO add your handling code here:
         
-        
         seleccion = EuskalSelekzioaMenua.selekzioa;  //al arrayList "seleccion", asignarle el contenido del arrayList creado en "EuskalSelekzioa"
         System.out.println(seleccion);
         
@@ -214,16 +278,84 @@ public class partidakAntolatu extends javax.swing.JFrame {
         InfoJugadores.setText("");  //vaciar la caja de texto de jugadores random (= jugadores que recibirán tarjeta)
         //VerPlantillaNombres.setText("fff");
         
+        //todos los tipo Futbolista
+        PlantillaJugadores.setText("");
+        PlantillaJugadores.setEnabled(true);
+        PlantillaJugadores.setSelectedTextColor(Color.white);   //PlantillaJugadores.setText("");
         
-        PlantillaGeneral.setEnabled(true);
-        PlantillaGeneral.setSelectedTextColor(Color.red);
-        PlantillaGeneral.setText("");
+        //todos los tipo Entrenador
+        PlantillaEntrenadores.setText("");
+        PlantillaEntrenadores.setEnabled(true);
+        PlantillaEntrenadores.setSelectedTextColor(Color.white);    //PlantillaEntrenadores.setText("");
         
+        //todos los tipo Masajista (FISIOTERAPEUTA)
+        PlantillaMedicos.setText("");
+        PlantillaMedicos.setEnabled(true);
+        PlantillaMedicos.setSelectedTextColor(Color.white);     //PlantillaMedicos.setText("");
+        
+        //todos los tipo Masajista (MÉDICO)
+        PlantillaOtros.setText("");
+        PlantillaOtros.setEnabled(true);
+        PlantillaOtros.setSelectedTextColor(Color.white);   //PlantillaOtros.setText("");
+        
+        
+        //filtrar por tipo Futbolista
         for (int i = 0; i < selekzioa.size(); ++i) {
-            PlantillaGeneral.setText(PlantillaGeneral.getText() + "Jugador: " + ++cantidadJugadoresTarjeta + "\n" + 
-                selekzioa.get(i) + " " /*+ new String(selekzioa.get(i).getApellidos())*/ + "\n" + 
-                "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+            if (selekzioa.get(i).getClass() == Futbolista.class) {    //los tipo Futbolistas
+                
+                PlantillaJugadores.setText(PlantillaJugadores.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                        selekzioa.get(i) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+            }
         }
+        
+        //filtrar por tipo Entrenador
+        for (int i = 0; i < selekzioa.size(); ++i) {
+            if (selekzioa.get(i).getClass() == Entrenador.class) {    //los tipo Futbolistas
+                
+                PlantillaEntrenadores.setText(PlantillaEntrenadores.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                        selekzioa.get(i) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+            }
+        }
+        
+        //filtrar por tipo Masajista (diferenciar Médico y Fisioterapeuta)
+        for (int i = 0; i < selekzioa.size(); ++i) {
+            if (selekzioa.get(i).getClass() == Masajista.class) {    //los tipo Futbolistas
+                
+                niJugadorNiEntrenador.add((Masajista) selekzioa.get(i));
+            }
+            
+            
+        }
+        for (int g = 0; g < niJugadorNiEntrenador.size(); ++g) {
+                if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Fisioterapeuta")) {    //en caso de ser MÉDICO
+                    
+                    PlantillaOtros.setText(PlantillaOtros.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                        niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+                
+                } else if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Medico")) {
+                    
+                    PlantillaMedicos.setText(PlantillaMedicos.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                        niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+                    
+                }
+            }
+        
+        /*for (int g = 0; g < niJugadorNiEntrenador.size(); ++g) {
+                if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Medico")) {    //en caso de ser Fisioterapeuta / de NO SER MÉDICO
+                    PlantillaMedicos.setText(PlantillaMedicos.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                            niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+                    //System.out.println(niJugadorNiEntrenador.get(g));
+                    
+                } else if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Fisioterapeuta")) {
+                    ++numFisio;
+                    PlantillaOtros.setText(PlantillaOtros.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                            niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+                    //System.out.println(niJugadorNiEntrenador.get(g));
+                    System.out.println(numFisio);
+                }
+            }*/
+        
+        System.out.println("hola" + niJugadorNiEntrenador);
         
         
     }//GEN-LAST:event_CrearPlantillaActionPerformed
@@ -266,7 +398,13 @@ public class partidakAntolatu extends javax.swing.JFrame {
                 new partidakAntolatu().setVisible(true);
                 RandomPlayerAdd.setEnabled(false);  //bloquear el botón "RandomPlayerAdd" según se ejecute el frame
                 InfoJugadores.setEnabled(false);
-                PlantillaGeneral.setEnabled(false);
+                PlantillaJugadores.setEnabled(false);
+                PlantillaEntrenadores.setEnabled(false);
+                PlantillaMedicos.setEnabled(false);
+                PlantillaOtros.setEnabled(false);
+                
+                //partidakAntolatu.setPreferredSize(new Dimension(400, 300));
+                personalizacionJframe();
             }
         });
         
@@ -278,16 +416,36 @@ public class partidakAntolatu extends javax.swing.JFrame {
         
         
         
-        
-        
         Partida par1 = new Partida();
     }
+    
+    /**
+     * Método para aplicarle a nuestro jframe unas determinadas 
+     * características. 
+     */
+    public static void personalizacionJframe() {
+            //JFrame todasLasTarjetas = new JFrame("Partidak 112");
+            //adri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+            
+            /*adri.setPreferredSize(new Dimension(400, 300));
+            adri.pack();
+            adri.setLocationRelativeTo(null);
+            adri.setVisible(true);*/
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton CrearPlantilla;
     public static javax.swing.JLabel ElegirRandomPonerT;
+    public static javax.swing.JLabel FiltroEntrenadores;
+    public static javax.swing.JLabel FiltroJugadores;
+    public static javax.swing.JLabel FiltroMedicos;
+    public static javax.swing.JLabel FiltroOtros;
     public static javax.swing.JTextArea InfoJugadores;
-    public static javax.swing.JTextArea PlantillaGeneral;
+    public static javax.swing.JTextArea PlantillaEntrenadores;
+    public static javax.swing.JTextArea PlantillaJugadores;
+    public static javax.swing.JTextArea PlantillaMedicos;
+    public static javax.swing.JTextArea PlantillaOtros;
     public static javax.swing.JButton RandomPlayerAdd;
     private javax.swing.JButton RegistroTarjetas;
     public static javax.swing.JLabel VerNombresJugadores;
@@ -295,5 +453,8 @@ public class partidakAntolatu extends javax.swing.JFrame {
     public static javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
 }

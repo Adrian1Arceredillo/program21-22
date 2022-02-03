@@ -100,7 +100,7 @@ public class Masajista extends IntegranteSeleccion {
     
     @Override
     public String toString() {
-        return "\tId = " + this.getId() + ", " +  
+        return "Id = " + this.getId() + ", " +  
                 "Nombre = " + this.getNombre() + ", " +  
                 "Apellido = " + this.getApellidos() + ", " +  
                 "Edad = " + this.getEdad() + ", " +  

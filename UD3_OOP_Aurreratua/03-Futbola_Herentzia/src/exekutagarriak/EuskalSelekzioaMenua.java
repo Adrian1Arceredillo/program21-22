@@ -181,7 +181,7 @@ public class EuskalSelekzioaMenua {
             if (selekzioa.get(i) != null) {
                 if (selekzioa.get(i).getClass() == Futbolista.class) {
                     //selekzioa.remove(i);
-                    System.out.println(selekzioa.get(i));
+                    System.out.println("\t" + selekzioa.get(i));
                 }
             }
         }
@@ -190,7 +190,7 @@ public class EuskalSelekzioaMenua {
             if (selekzioa.get(i) != null) {
                 if (selekzioa.get(i).getClass() == Entrenador.class) {
                     //selekzioa.remove(i);
-                    System.out.println(selekzioa.get(i));
+                    System.out.println("\t" + selekzioa.get(i));
                 }
             }
         }
@@ -199,7 +199,7 @@ public class EuskalSelekzioaMenua {
             if (selekzioa.get(i) != null) {
                 if (selekzioa.get(i).getClass() == Masajista.class) {
                     //selekzioa.remove(i);
-                    System.out.println(selekzioa.get(i));
+                    System.out.println("\t" + selekzioa.get(i));
                 }
             }
         }
