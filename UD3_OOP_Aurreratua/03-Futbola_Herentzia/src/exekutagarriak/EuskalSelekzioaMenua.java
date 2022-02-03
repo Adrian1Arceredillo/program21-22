@@ -207,6 +207,46 @@ public class EuskalSelekzioaMenua {
     
     
     /**
+     * Este método nos permite filtrar a nuestro gusto, todos los elementos/objetos que 
+     * se encuentren dentro del arrayList "selekzioa". El filtro puede ser tanto en 
+     * función de valores especificos de cualquiera de los atributos de las clases, o 
+     * también dependiendo del tipo de objeto/elemento se trate; 
+     * 
+     * En este caso, debemos filtrar los elementos del arrayList en según el tipo de 
+     * estos; es decir, separar los elementos Futbolista, Entrenador y Masajista.
+     * 
+     */
+    public static void taldekatuta2(ArrayList<IntegranteSeleccion> arrayDeElementos) {
+        System.out.println("Futbolariak: \n");
+        for (int i = 0; i < selekzioa.size(); ++i) {
+            if (selekzioa.get(i) != null) {
+                if (selekzioa.get(i).getClass() == Futbolista.class) {
+                    //selekzioa.remove(i);
+                    System.out.println(selekzioa.get(i));
+                }
+            }
+        }
+        System.out.println("Entrenatzaileak: \n");
+        for (int i = 0; i < selekzioa.size(); ++i) {
+            if (selekzioa.get(i) != null) {
+                if (selekzioa.get(i).getClass() == Entrenador.class) {
+                    //selekzioa.remove(i);
+                    System.out.println(selekzioa.get(i));
+                }
+            }
+        }
+        System.out.println("Masajistak: \n");
+        for (int i = 0; i < selekzioa.size(); ++i) {
+            if (selekzioa.get(i) != null) {
+                if (selekzioa.get(i).getClass() == Masajista.class) {
+                    //selekzioa.remove(i);
+                    System.out.println(selekzioa.get(i));
+                }
+            }
+        }
+    }
+    
+    /**
      * Método para imprimir todo el contenido de los objetos que se encuentren 
      * en el interior del arrayList "selekzioa".
      */

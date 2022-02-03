@@ -13,8 +13,9 @@ import java.util.*;
 public class EuskalSelekzioa {
 
     public static int azkenId = 0;
-    private static ArrayList<IntegranteSeleccion> selekzioa = new ArrayList<IntegranteSeleccion>();
+    public static ArrayList<IntegranteSeleccion> selekzioa = new ArrayList<IntegranteSeleccion>();
 
+     
     /**
      * Programa honek metodo desberdinei deituko die banan banan. Beharbada ez
      * diozu koherentzia handirik topatuko programa osoari. Ariketaren helburua
@@ -26,6 +27,9 @@ public class EuskalSelekzioa {
         futbolariBat();
         bestePartaideBatzukSortu();
         selekzioOsoaSortu();
+        
+        System.out.println("SELEKZIO OSOA SORTU: \n");  //imprimir la selección completa
+        plantillaOsoaIkusi();
 
         int ezabatzekoIda = 4;
         if (partaideaEzabatu(ezabatzekoIda)) {
@@ -120,8 +124,8 @@ public class EuskalSelekzioa {
         selekzioa.add(new Masajista(++azkenId, "Iñaki", "Sertxiberrieta", 36, "Fisioterapeuta", 9));
         selekzioa.add(new Masajista(++azkenId, "Ander", "Etxeburu", 51, "Medico", 20));
 
-        System.out.println("SELEKZIO OSOA SORTU: \n");
-        plantillaOsoaIkusi();
+        //System.out.println("SELEKZIO OSOA SORTU: \n");
+        //plantillaOsoaIkusi();
 
     }
 
@@ -160,6 +164,10 @@ public class EuskalSelekzioa {
             }
         }
         System.out.println("----------------------------");
+    }
+
+    public static String taldekatuta2(ArrayList<IntegranteSeleccion> selekzioa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     //#####################################

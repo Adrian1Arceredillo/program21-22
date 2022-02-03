@@ -473,12 +473,25 @@ public class PartidakKudeatu {
         int numeroTarjetasCadaJugador = 0;  //variable que recogerá el número de tarjetas que tiene cada jugador
         
         ArrayList nombresDeAmonestados = new ArrayList();
+        ArrayList<String> menor = new ArrayList<String>();
         
         int cantMaxTarjetas = 0;
         String nombreMaxTarjetas = "";  //variable que hará referencia al JUGADOR que haya recibido MÁS TARJETAS
-        int cantMinTarjetas = 0;
+        int cantMinTarjetas = 9999;
         String nombreMinTarjetas = "";  //variable que hará referencia al JUGADOR que haya recibido MENOS TARJETAS
         
+        //arrayLists relacionados
+        ArrayList<String> nombresTarjetas = new ArrayList<String>();    //recoge los nombres de los jugadores amonestados
+        ArrayList<Integer> cantidadTarjetas = new ArrayList<Integer>(); //recoge el número de tarjetas de cada jugador
+        
+        //arraysLists para MÁX y MIN tarjetas (EN CASO DE QUE HAYA EMPATE EN LA CANTIDAD DE TARJETAS)
+        ArrayList<String> empateMax = new ArrayList<String>();
+        ArrayList<String> empateMin = new ArrayList<String>();
+        
+        int mayorTarjetas = 0;
+        int menorTarjetas = 0;
+        
+        ArrayList<String> minTarjetas = new ArrayList<String>();
         // recorremos los valores del array tarjetasSinDuplicados
         for(int i=0;i<tarjetasSinDuplicados.size();i++){    //for que compara cuántas veces aparece cada elemento de un arrayList, en otro arrayList
             // recorremos los valores del array tarjetasTodasLasPartidas
@@ -495,44 +508,83 @@ public class PartidakKudeatu {
             }
             
             System.out.printf("\t%-6s %-24s", tarjetasSinDuplicados.get(i).getNombre(), tarjetasSinDuplicados.get(i).getApellidos());
+            nombresTarjetas.add(tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos());  //guardar los nombres de los jugadores con tarjeta
             System.out.printf("\t%5s %d \n","kop.", numeroTarjetasCadaJugador);
+            cantidadTarjetas.add(numeroTarjetasCadaJugador);    //guardar en un arrayList los datos de la cantidad de tarjetas por jugador
             
             
-            //definir jugador con MÁS tarjetas
-            if (i == 0) {
-                cantMaxTarjetas = numeroTarjetasCadaJugador;
-                nombreMaxTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
-            }
-            if (numeroTarjetasCadaJugador > cantMaxTarjetas) {
-                cantMaxTarjetas = numeroTarjetasCadaJugador;
-                nombreMaxTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
+            //calcular MAYOR número de tarjetas
+            for(int q = 0; q < cantidadTarjetas.size(); ++q) {
+                
+                if (cantidadTarjetas.get(q) > mayorTarjetas){
+                    mayorTarjetas = cantidadTarjetas.get(q);
+                } 
             }
             
-            //definir jugador con MÁS tarjetas
-            if (i == 0) {
-                cantMinTarjetas = numeroTarjetasCadaJugador;
-                nombreMinTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
-            }
-            if (numeroTarjetasCadaJugador < cantMinTarjetas) {
-                cantMinTarjetas = numeroTarjetasCadaJugador;
-                nombreMinTarjetas = tarjetasSinDuplicados.get(i).getNombre() + " " + tarjetasSinDuplicados.get(i).getApellidos();   //guardar el nombre y apellido del jugador en cuestión
+            //calcular MENOR número de tarjetas
+            menorTarjetas = mayorTarjetas;
+            for(int w = 0; w < cantidadTarjetas.size(); ++w) {
+                
+                if (cantidadTarjetas.get(w) < menorTarjetas) {
+                    menorTarjetas = cantidadTarjetas.get(w);
+                }
             }
             
             numeroTarjetasCadaJugador=0;
         }
         
-        System.out.println("Máx. tarjetas: " + cantMaxTarjetas + "  /   Jugador: " + nombreMaxTarjetas);
-        System.out.println("Min. tarjetas: " + cantMinTarjetas + "  /   Jugador: " + nombreMinTarjetas);
+        
+        //buscar los que tengan el MÁXIMO DE TARJETAS
+        for (int e = 0; e < cantidadTarjetas.size(); ++e) {
+                
+            if (cantidadTarjetas.get(e) == mayorTarjetas) {
+                empateMax.add(nombresTarjetas.get(e));
+                nombreMaxTarjetas = tarjetasSinDuplicados.get(e).getNombre() + " " + tarjetasSinDuplicados.get(e).getApellidos();
+            }
+        }
+            
+        //buscar los que tengan el MÍNIMO DE TARJETAS
+        for (int r = 0; r < cantidadTarjetas.size(); ++r) {
+                
+            if (cantidadTarjetas.get(r) == menorTarjetas) {
+                empateMin.add(nombresTarjetas.get(r));
+                nombreMinTarjetas = tarjetasSinDuplicados.get(r).getNombre() + " " + tarjetasSinDuplicados.get(r).getApellidos();
+            }
+        }
         
         System.out.println("");
-        System.out.println(tarjetasTodasLasPartidas);
+        
+        /**
+         * Si hay más de un jugador con el MAXIMO o MINIMO de tarjetas, se imprimirán todos 
+         * los que compartan dicho valor. Es decir, se dirá que hay un empate y se mostrará 
+         * entre quiénes se ha dado.
+         * 
+         * En caso de no haber empate, simplemente se imprimirá el jugador con MÁS o MENOS 
+         * tarjetas. 
+         */
+        if (empateMax.size() > 1) {
+            System.out.println("-> Max. tarjetas de un jugador: " + mayorTarjetas + "\n");
+            System.out.println("\t!Hay un EMPATE! ");
+            System.out.println("\tJugadores empatados a " + mayorTarjetas + " tarjeta/s:  ->  " + empateMax + "\n");
+        } else {
+            System.out.println("-> Máx. tarjetas: " + mayorTarjetas + "  /   Jugador: " + nombreMaxTarjetas + "\n");
+        }
+        
+        if (empateMin.size() > 1) {
+            System.out.println("-> Min. tarjetas de un jugador: " + menorTarjetas + "\n");
+            System.out.println("\t!Hay un EMPATE! ");
+            System.out.println("\tJugadores empatados a " + menorTarjetas + " tarjeta/s:  ->  " + empateMin + "\n");
+        } else {
+            System.out.println("-> Mín. tarjetas: " + menorTarjetas + "  /   Jugador: " + nombreMinTarjetas + "\n");
+        }
+        
+        System.out.println("");
         System.out.println("");
         //https://howtodoinjava.com/java/collections/arraylist/remove-duplicate-elements/#:~:text=To%20remove%20the%20duplicates%20from,toList()%20.
         
         
-        //DATO 5 - jugador con MÁS TARJETAS y jugador con MENOS TARJETAS
-        System.out.println("-> Jugador con MÁS tarjetas: \n");
-        //for 
+        //DATO 5 - 
+        
         
     }
     

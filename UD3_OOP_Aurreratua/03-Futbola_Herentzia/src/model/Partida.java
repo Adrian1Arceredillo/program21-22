@@ -8,6 +8,8 @@ package model;
 import model.*;
 import java.util.*;
 import java.time.*;
+import exekutagarriak.*;
+import static exekutagarriak.EuskalSelekzioaMenua.selekzioa;
 
 
 /**
@@ -58,6 +60,7 @@ public class Partida extends Futbolista {
         this.aurkaria = aurkaria;
         this.txartelak = jugadoresAmonestados;
     }
+    
     
     
     
@@ -141,6 +144,38 @@ public class Partida extends Futbolista {
     public void txartelaJarri(Futbolista jokalaria) {
         this.txartelak.add(jokalaria);
     }
+    
+    
+    /**
+     * Método creado por mí para utilizarlo en el Frame. Con esto busco 
+     * crear Futbolista-s (en este caso 11) de una forma predefinida. 
+     * 
+     * Igual que en el ejercicio del ahorcado cuando se creaba un array 
+     * de Strings con palabras; y luego se elegía una de forma aleatoria. 
+     */
+    public Futbolista jugadoresPredefinidos() {
+        ArrayList<Futbolista> selekzioaFrame = new ArrayList<>(); 
+        
+        selekzioaFrame.add(new Futbolista(1, "Aitor", "Fernandez", 30, 1, Demarkazioa.POR));
+        selekzioaFrame.add(new Futbolista(2, "Unai", "Bustinza", 29, 2, Demarkazioa.DEF));
+        selekzioaFrame.add(new Futbolista(3, "Mikel", "Balenziaga", 33, 3, Demarkazioa.DEF));
+        selekzioaFrame.add(new Futbolista(4, "Asier", "Illarramendi", 31, 4, Demarkazioa.MED));
+        selekzioaFrame.add(new Futbolista(5, "Iñigo", "Martinez", 30, 5, Demarkazioa.DEF));
+        selekzioaFrame.add(new Futbolista(6, "Mikel", "San Jose", 32, 6, Demarkazioa.MED));
+        selekzioaFrame.add(new Futbolista(7, "Gaizka", "Larrazabal", 24, 7, Demarkazioa.DEF));
+        selekzioaFrame.add(new Futbolista(8, "Manu", "Garcia", 35, 8, Demarkazioa.MED));
+        selekzioaFrame.add(new Futbolista(9, "Aritz", "Aduriz", 40, 9, Demarkazioa.DEL));
+        selekzioaFrame.add(new Futbolista(10, "Javier", "Eraso", 31, 10, Demarkazioa.MED));
+        selekzioaFrame.add(new Futbolista(11, "Asier", "Villalibre", 24, 11, Demarkazioa.DEL));
+        
+        //Random r = new Random();
+        int jugadorRandom = (int) (Math.random() * selekzioaFrame.size());
+        return selekzioaFrame.get(jugadorRandom);
+        
+    }
+    
+    
+    
     
 }
 
