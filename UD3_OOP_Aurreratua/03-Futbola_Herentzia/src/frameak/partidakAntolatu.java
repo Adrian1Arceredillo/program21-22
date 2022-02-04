@@ -16,6 +16,7 @@ import static exekutagarriak.EuskalSelekzioaMenua.selekzioa;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -30,15 +31,21 @@ public class partidakAntolatu extends javax.swing.JFrame {
     
     public static ArrayList<Futbolista> jugadoresTodasLasTarjetas = new ArrayList<Futbolista>();    //arrayList que guardará los nombres de todos los jugadores amonestados (CON REPETIDOS)
     public static ArrayList<Masajista> niJugadorNiEntrenador = new ArrayList<Masajista>();  //arrayList para separar los de tipo Masajista (Fisioterapeuta y Médico)
+    
+    public static Partida[] partidaGuztiak = new Partida[20];
+    public static int numeroPartidasCreadas = 0; 
+    
+    public static ArrayList<Futbolista> amonestadosPorPartida = new ArrayList<Futbolista>();
     /**
      * Creates new form partidakAntolatu
      */
     public partidakAntolatu() {
         this.setTitle("Partidak Antolatu - Adrian");
-        this.setPreferredSize(new Dimension(1000, 900));
+        this.setPreferredSize(new Dimension(1200, 1000));
         initComponents();
         
-        InfoJugadores.setLineWrap(true);
+        InfoPartida.setLineWrap(true);
+        AmonestadosPartida.setLineWrap(true);
         PlantillaJugadores.setLineWrap(true);
         PlantillaEntrenadores.setLineWrap(true);
         PlantillaMedicos.setLineWrap(true);
@@ -55,14 +62,16 @@ public class partidakAntolatu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabelTitulo = new javax.swing.JLabel();
-        ElegirRandomPonerT = new javax.swing.JLabel();
-        RandomPlayerAdd = new javax.swing.JButton();
+        CrearPartidaTitulo = new javax.swing.JLabel();
+        GuardarDatosPartida = new javax.swing.JButton();
         VerNombresJugadores = new javax.swing.JLabel();
         VerPlantillaNombres = new javax.swing.JLabel();
         CrearPlantilla = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        InfoJugadores = new javax.swing.JTextArea();
+        InfoPartida = new javax.swing.JTextArea();
         RegistroTarjetas = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         PlantillaJugadores = new javax.swing.JTextArea();
@@ -76,21 +85,40 @@ public class partidakAntolatu extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         PlantillaOtros = new javax.swing.JTextArea();
         FiltroOtros = new javax.swing.JLabel();
+        CasillaFechaUser = new javax.swing.JTextField();
+        DataPartida = new javax.swing.JLabel();
+        AurkariaPartida = new javax.swing.JLabel();
+        CasillaAurkariaUser = new javax.swing.JTextField();
+        TxartelakPartida = new javax.swing.JLabel();
+        OtraTarjeta = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        CrearPartida = new javax.swing.JButton();
+        IzenaUser = new javax.swing.JTextField();
+        AbizenaUser = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        OtraPartida = new javax.swing.JButton();
+        InfoPartidaCreada = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        AmonestadosPartida = new javax.swing.JTextArea();
+        Amonestados = new javax.swing.JLabel();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane6.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelTitulo.setText("PARTIDA BAT ANTOLATU");
 
-        ElegirRandomPonerT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ElegirRandomPonerT.setText("add player");
-        ElegirRandomPonerT.setToolTipText("");
+        CrearPartidaTitulo.setText("Partida Sortu:");
+        CrearPartidaTitulo.setToolTipText("");
 
-        RandomPlayerAdd.setText("Random Player");
-        RandomPlayerAdd.setActionCommand("");
-        RandomPlayerAdd.addActionListener(new java.awt.event.ActionListener() {
+        GuardarDatosPartida.setText("Guardar Partida");
+        GuardarDatosPartida.setActionCommand("");
+        GuardarDatosPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RandomPlayerAddActionPerformed(evt);
+                GuardarDatosPartidaActionPerformed(evt);
             }
         });
 
@@ -105,10 +133,10 @@ public class partidakAntolatu extends javax.swing.JFrame {
             }
         });
 
-        InfoJugadores.setColumns(20);
-        InfoJugadores.setRows(5);
-        InfoJugadores.setText("Información del jugador: ");
-        jScrollPane1.setViewportView(InfoJugadores);
+        InfoPartida.setColumns(20);
+        InfoPartida.setRows(5);
+        InfoPartida.setText("Info partida:");
+        jScrollPane1.setViewportView(InfoPartida);
 
         RegistroTarjetas.setText("Todas las tarjetas");
         RegistroTarjetas.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +173,55 @@ public class partidakAntolatu extends javax.swing.JFrame {
 
         FiltroOtros.setText("Otros: ");
 
+        CasillaFechaUser.setText("Sartu data");
+        CasillaFechaUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CasillaFechaUserActionPerformed(evt);
+            }
+        });
+
+        DataPartida.setText("-> Data (yyyy-mm-dd):");
+
+        AurkariaPartida.setText("-> Aurkaria: ");
+
+        CasillaAurkariaUser.setText("Sartu aurkariaren izena");
+
+        TxartelakPartida.setText("-> Txartela ezarri jokalari bati: ");
+
+        OtraTarjeta.setText("+1");
+        OtraTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OtraTarjetaActionPerformed(evt);
+            }
+        });
+
+        CrearPartida.setText("Hasi");
+        CrearPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearPartidaActionPerformed(evt);
+            }
+        });
+
+        IzenaUser.setText("Izena");
+
+        AbizenaUser.setText("Abizena");
+
+        OtraPartida.setText("Otra Partida");
+        OtraPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OtraPartidaActionPerformed(evt);
+            }
+        });
+
+        InfoPartidaCreada.setText("Datos de la partida: ");
+
+        AmonestadosPartida.setColumns(20);
+        AmonestadosPartida.setRows(5);
+        AmonestadosPartida.setText("Jugadores con tarjeta: ");
+        jScrollPane7.setViewportView(AmonestadosPartida);
+
+        Amonestados.setText("Amonestados:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,38 +229,64 @@ public class partidakAntolatu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo)
+                        .addGap(125, 125, 125)
+                        .addComponent(RegistroTarjetas)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTitulo)
+                            .addComponent(FiltroJugadores)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(VerNombresJugadores)
                                 .addGap(18, 18, 18)
                                 .addComponent(CrearPlantilla)
                                 .addGap(18, 18, 18)
-                                .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(FiltroJugadores))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(FiltroMedicos)
+                            .addComponent(FiltroEntrenadores)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FiltroOtros))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RandomPlayerAdd)
-                            .addComponent(ElegirRandomPonerT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RegistroTarjetas))
-                        .addGap(77, 77, 77))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(FiltroOtros)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane5)
-                            .addComponent(FiltroMedicos, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .addComponent(FiltroEntrenadores, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(TxartelakPartida)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(DataPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(CasillaFechaUser))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(AurkariaPartida)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(CasillaAurkariaUser))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(CrearPartidaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(CrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(OtraPartida))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(IzenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(AbizenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(OtraTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(GuardarDatosPartida)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(InfoPartidaCreada))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Amonestados, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(117, 117, 117))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,63 +296,142 @@ public class partidakAntolatu extends javax.swing.JFrame {
                     .addComponent(jLabelTitulo)
                     .addComponent(RegistroTarjetas))
                 .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VerNombresJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CrearPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ElegirRandomPonerT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RandomPlayerAdd)
-                .addGap(11, 11, 11)
-                .addComponent(FiltroJugadores)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(VerNombresJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CrearPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addComponent(FiltroJugadores)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(FiltroEntrenadores)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(FiltroMedicos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CrearPartidaTitulo)
+                            .addComponent(CrearPartida)
+                            .addComponent(OtraPartida))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CasillaFechaUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DataPartida))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AurkariaPartida)
+                            .addComponent(CasillaAurkariaUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TxartelakPartida)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(OtraTarjeta)
+                            .addComponent(IzenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AbizenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(GuardarDatosPartida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(InfoPartidaCreada)
+                            .addComponent(Amonestados))))
                 .addGap(18, 18, 18)
-                .addComponent(FiltroEntrenadores)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(FiltroMedicos)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(FiltroOtros)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(FiltroOtros)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RandomPlayerAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomPlayerAddActionPerformed
+    private void GuardarDatosPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarDatosPartidaActionPerformed
         // TODO add your handling code here:
         
-        int jugadorAleatorio = (int) (Math.random() * futbolistasSeleccion.size());
-        
-        //PlantillaGeneral
-        
-        InfoJugadores.setText(InfoJugadores.getText() + "Jugador: " + ++cantidadJugadoresTarjeta + "\n" + 
-                "   - Nombre: " + new String(futbolistasSeleccion.get(jugadorAleatorio).getNombre()) + " " + new String(futbolistasSeleccion.get(jugadorAleatorio).getApellidos()) + "\n" + 
-                "   - Dorsal: " + futbolistasSeleccion.get(jugadorAleatorio).getDorsal() + "    /   Posición: " + futbolistasSeleccion.get(jugadorAleatorio).getDemarcacion() + "\n" + 
-                "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
-        jugadoresTodasLasTarjetas.add(futbolistasSeleccion.get(jugadorAleatorio));
-        
-        System.out.println(jugadoresTodasLasTarjetas);
+        IzenaUser.setEnabled(false);  
+        AbizenaUser.setEnabled(false);
         
         
-        //arrayList-s para el control de tarjetas ()
+        if (CasillaFechaUser.getText().equals("")) {   //se mostrará un mensaje si el campo de la FECHA se queda vacío
+            
+            JOptionPane.showMessageDialog(null,"Parece que te falta algún dato! Ten en cuenta que para crear una \n"
+                            + "nueva partida es necesario conocer la FECHA de la misma. \n\nVuelve a intentarlo...", "Error",JOptionPane.WARNING_MESSAGE);
+            
+        } else if (CasillaAurkariaUser.getText().equals("")) {  //se mostrará un mensaje si el campo del ADVERSARIO se queda vacío
+            
+            JOptionPane.showMessageDialog(null,"Parece que te falta algún dato! Ten en cuenta que en todas las partidas \n"
+                            + "hacen falta 2 adversarios. De lo contrario no se podría jugar. \n\nVuelve a intentarlo...", "Error",JOptionPane.WARNING_MESSAGE); 
+            
+        } 
         
-        InfoJugadores.setEnabled(true);
+        //valor de entrada de la FECHA de la partida
+        String fechaPartidaUser = CasillaFechaUser.getText();
+        
+        LocalDate partidarenData = LocalDate.parse(fechaPartidaUser);
+        System.out.println("La fecha de esta nueva partida es: " + partidarenData);
+        
+        //valor de entrada del ADVERSARIO
+        String aurkariaUser = CasillaAurkariaUser.getText().substring(0, 1).toUpperCase() + CasillaAurkariaUser.getText().substring(1);
         
         
+        //InfoJugadores.setText(amonestadoUser);
         
-    }//GEN-LAST:event_RandomPlayerAddActionPerformed
+        String nombreAmonestado = IzenaUser.getText().substring(0, 1).toUpperCase() + IzenaUser.getText().substring(1).toLowerCase();
+        String apellidoAmonestado = AbizenaUser.getText().substring(0, 1).toUpperCase() + AbizenaUser.getText().substring(1).toLowerCase();
+        
+        
+        ArrayList<Futbolista> amonestadosPorPartida = new ArrayList<Futbolista>();
+        
+        for (int i = 0; i < futbolistasSeleccion.size(); ++i) {
+            if (futbolistasSeleccion.get(i) != null) {
+                if (futbolistasSeleccion.get(i).getNombre().equals(nombreAmonestado) && futbolistasSeleccion.get(i).getApellidos().equals(apellidoAmonestado)) {
+                    System.out.println(futbolistasSeleccion.get(i));
+                    
+                    amonestadosPorPartida.add(futbolistasSeleccion.get(i));
+                    
+                }
+            }
+        }
+        
+        System.out.println(amonestadosPorPartida);
+        //visualizar jugadores amonestado en esta partida
+        for (int i = 0; i < amonestadosPorPartida.size(); ++i) {
+            AmonestadosPartida.setText(AmonestadosPartida.getText() + amonestadosPorPartida.get(i) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+        }
+        
+        //vaciar las casillas de texto cuando la partide se guarde por primera vez
+        IzenaUser.setText("");
+        AbizenaUser.setText(""); 
+        
+        ++numeroPartidasCreadas;
+        
+        
+        //crear la partida con los datos introducidos por el usuario (+ print)
+        Partida p1 = new Partida(partidarenData, aurkariaUser, amonestadosPorPartida);
+        
+        InfoPartida.setText("Fecha de la partida: " + p1.getData() + "\n"   //ver Fecha y Adversario de la partida
+                + "Adversario: " + p1.getAurkaria());
+        
+    }//GEN-LAST:event_GuardarDatosPartidaActionPerformed
 
     private void CrearPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPlantillaActionPerformed
         // TODO add your handling code here:
+        
+        CrearPlantilla.setEnabled(false);
         
         seleccion = EuskalSelekzioaMenua.selekzioa;  //al arrayList "seleccion", asignarle el contenido del arrayList creado en "EuskalSelekzioa"
         System.out.println(seleccion);
@@ -274,8 +456,9 @@ public class partidakAntolatu extends javax.swing.JFrame {
             
         }
         
-        RandomPlayerAdd.setEnabled(true);
-        InfoJugadores.setText("");  //vaciar la caja de texto de jugadores random (= jugadores que recibirán tarjeta)
+        CrearPartida.setEnabled(true);
+        
+        InfoPartida.setText("");  //vaciar la caja de texto de jugadores random (= jugadores que recibirán tarjeta)
         //VerPlantillaNombres.setText("fff");
         
         //todos los tipo Futbolista
@@ -307,6 +490,7 @@ public class partidakAntolatu extends javax.swing.JFrame {
                         selekzioa.get(i) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
             }
         }
+        PlantillaJugadores.setEditable(false);
         
         //filtrar por tipo Entrenador
         for (int i = 0; i < selekzioa.size(); ++i) {
@@ -316,6 +500,7 @@ public class partidakAntolatu extends javax.swing.JFrame {
                         selekzioa.get(i) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
             }
         }
+        PlantillaEntrenadores.setEditable(false);
         
         //filtrar por tipo Masajista (diferenciar Médico y Fisioterapeuta)
         for (int i = 0; i < selekzioa.size(); ++i) {
@@ -323,22 +508,23 @@ public class partidakAntolatu extends javax.swing.JFrame {
                 
                 niJugadorNiEntrenador.add((Masajista) selekzioa.get(i));
             }
-            
-            
         }
+        
         for (int g = 0; g < niJugadorNiEntrenador.size(); ++g) {
-                if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Fisioterapeuta")) {    //en caso de ser MÉDICO
+            if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Fisioterapeuta")) {    //en caso de ser MÉDICO
                     
-                    PlantillaOtros.setText(PlantillaOtros.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
-                        niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+                PlantillaOtros.setText(PlantillaOtros.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                    niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
                 
-                } else if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Medico")) {
+            } else if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Medico")) {
                     
-                    PlantillaMedicos.setText(PlantillaMedicos.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
-                        niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+                PlantillaMedicos.setText(PlantillaMedicos.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
+                    niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
                     
-                }
             }
+        }
+        PlantillaMedicos.setEditable(false);
+        PlantillaOtros.setEditable(false);
         
         /*for (int g = 0; g < niJugadorNiEntrenador.size(); ++g) {
                 if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Medico")) {    //en caso de ser Fisioterapeuta / de NO SER MÉDICO
@@ -364,6 +550,73 @@ public class partidakAntolatu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_RegistroTarjetasActionPerformed
+
+    private void CrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPartidaActionPerformed
+        // TODO add your handling code here:
+        
+        GuardarDatosPartida.setEnabled(true);   //habilitar botón para crear una partida nueva
+        
+        ArrayList<Futbolista> tarjetasEstaPartida = new ArrayList<Futbolista>();
+        
+        //habilitar casilla de nueva FECHA
+        CasillaFechaUser.setEditable(true);
+        CasillaFechaUser.setText("");
+        CasillaFechaUser.setForeground(Color.black);
+        
+        //habilitar casilla de nuevo ADVERSARIO
+        CasillaAurkariaUser.setEditable(true);
+        CasillaAurkariaUser.setText("");
+        CasillaAurkariaUser.setForeground(Color.black);
+        
+                
+        //habilitar botón para añadir una nueva tarjeta
+        OtraTarjeta.setEnabled(true);
+        
+        //habilitar botón para guardar los datos de la partida
+        GuardarDatosPartida.setEnabled(true);
+        
+        //habilitar casilla para introducir el NOMBRE del jugador amonestado
+        IzenaUser.setEditable(true);
+        IzenaUser.setEnabled(true);
+        IzenaUser.setText("");
+        IzenaUser.setForeground(Color.black);
+        
+        //habilitar casilla para introducir el APELLIDO del jugador amonestado
+        AbizenaUser.setEditable(true);
+        AbizenaUser.setEnabled(true);
+        AbizenaUser.setText("");
+        AbizenaUser.setForeground(Color.black);
+        
+        /**
+         * bloquear el botón de COMENZAR a crear una partida; si se quiere hacer otra 
+         * partida bastará con pulsar "Guardar Partida". Es decir, las casillas de la 
+         * partida a crear, se vaciarán para poder volver a introducir datos.
+         */ 
+        CrearPartida.setEnabled(false);
+        
+    }//GEN-LAST:event_CrearPartidaActionPerformed
+
+    private void CasillaFechaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CasillaFechaUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CasillaFechaUserActionPerformed
+
+    private void OtraTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtraTarjetaActionPerformed
+        // TODO add your handling code here:
+        
+        IzenaUser.setEnabled(true);
+        IzenaUser.setEditable(true);
+        IzenaUser.setText("");
+        
+        AbizenaUser.setEnabled(true);
+        AbizenaUser.setEditable(true);
+        AbizenaUser.setText("");
+        
+        
+    }//GEN-LAST:event_OtraTarjetaActionPerformed
+
+    private void OtraPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtraPartidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OtraPartidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,12 +649,23 @@ public class partidakAntolatu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new partidakAntolatu().setVisible(true);
-                RandomPlayerAdd.setEnabled(false);  //bloquear el botón "RandomPlayerAdd" según se ejecute el frame
-                InfoJugadores.setEnabled(false);
+                GuardarDatosPartida.setEnabled(false);  //bloquear el botón "RandomPlayerAdd" según se ejecute el frame
+                CrearPartida.setEnabled(false); //bloquear el botón "Hasi" hasta que no se cree la selección (pulsar "Sortu")
+                InfoPartida.setEnabled(false);
+                AmonestadosPartida.setEnabled(false);
                 PlantillaJugadores.setEnabled(false);
                 PlantillaEntrenadores.setEnabled(false);
                 PlantillaMedicos.setEnabled(false);
                 PlantillaOtros.setEnabled(false);
+                
+                CasillaFechaUser.setEditable(false);            CasillaFechaUser.setForeground(Color.gray);
+                CasillaAurkariaUser.setEditable(false);         CasillaAurkariaUser.setForeground(Color.gray);
+                //CasillaJugadorTarjetaUser.setEditable(false);   CasillaJugadorTarjetaUser.setForeground(Color.gray);
+                IzenaUser.setEditable(false);       IzenaUser.setForeground(Color.gray);
+                AbizenaUser.setEditable(false);     AbizenaUser.setForeground(Color.gray);
+                
+                OtraTarjeta.setEnabled(false);
+                OtraPartida.setEnabled(false);
                 
                 //partidakAntolatu.setPreferredSize(new Dimension(400, 300));
                 personalizacionJframe();
@@ -435,19 +699,32 @@ public class partidakAntolatu extends javax.swing.JFrame {
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField AbizenaUser;
+    public static javax.swing.JLabel Amonestados;
+    public static javax.swing.JTextArea AmonestadosPartida;
+    public static javax.swing.JLabel AurkariaPartida;
+    public static javax.swing.JTextField CasillaAurkariaUser;
+    public static javax.swing.JTextField CasillaFechaUser;
+    public static javax.swing.JButton CrearPartida;
+    public static javax.swing.JLabel CrearPartidaTitulo;
     public static javax.swing.JButton CrearPlantilla;
-    public static javax.swing.JLabel ElegirRandomPonerT;
+    public static javax.swing.JLabel DataPartida;
     public static javax.swing.JLabel FiltroEntrenadores;
     public static javax.swing.JLabel FiltroJugadores;
     public static javax.swing.JLabel FiltroMedicos;
     public static javax.swing.JLabel FiltroOtros;
-    public static javax.swing.JTextArea InfoJugadores;
+    public static javax.swing.JButton GuardarDatosPartida;
+    public static javax.swing.JTextArea InfoPartida;
+    public static javax.swing.JLabel InfoPartidaCreada;
+    public static javax.swing.JTextField IzenaUser;
+    public static javax.swing.JButton OtraPartida;
+    public static javax.swing.JButton OtraTarjeta;
     public static javax.swing.JTextArea PlantillaEntrenadores;
     public static javax.swing.JTextArea PlantillaJugadores;
     public static javax.swing.JTextArea PlantillaMedicos;
     public static javax.swing.JTextArea PlantillaOtros;
-    public static javax.swing.JButton RandomPlayerAdd;
     private javax.swing.JButton RegistroTarjetas;
+    public static javax.swing.JLabel TxartelakPartida;
     public static javax.swing.JLabel VerNombresJugadores;
     public static javax.swing.JLabel VerPlantillaNombres;
     public static javax.swing.JLabel jLabelTitulo;
@@ -456,5 +733,10 @@ public class partidakAntolatu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

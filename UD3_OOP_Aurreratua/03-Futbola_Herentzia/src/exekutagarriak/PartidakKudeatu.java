@@ -57,7 +57,7 @@ public class PartidakKudeatu {
         partidakAsmatu();
         
         //partida nueva con DATOS METIDOS POR EL USUARIO
-        //partidaBatenDatuakEskatu();
+        partidaBatenDatuakEskatu();
         
         //calcular e imprimir estadísticas
         System.out.println(ANSI_BLUE_BACKGROUND + "ESTATISTIKAK BISTARATU: ");
