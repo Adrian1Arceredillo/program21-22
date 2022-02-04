@@ -36,6 +36,7 @@ public class partidakAntolatu extends javax.swing.JFrame {
     public static int numeroPartidasCreadas = 0; 
     
     public static ArrayList<Futbolista> amonestadosPorPartida = new ArrayList<Futbolista>();
+    
     /**
      * Creates new form partidakAntolatu
      */
@@ -376,7 +377,14 @@ public class partidakAntolatu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Parece que te falta algún dato! Ten en cuenta que en todas las partidas \n"
                             + "hacen falta 2 adversarios. De lo contrario no se podría jugar. \n\nVuelve a intentarlo...", "Error",JOptionPane.WARNING_MESSAGE); 
             
-        } 
+        } else if (IzenaUser.getText().equals("") || AbizenaUser.getText().equals("")) {
+            
+            JOptionPane.showMessageDialog(null,"Comprueba que al menos 1 jugador ha recibido una tarjeta en esta partida! \n"
+                            + "\n\nVuelve a intentarlo...", "Error",JOptionPane.WARNING_MESSAGE);
+            
+            IzenaUser.setEnabled(true);  
+            AbizenaUser.setEnabled(true);
+        }
         
         //valor de entrada de la FECHA de la partida
         String fechaPartidaUser = CasillaFechaUser.getText();
@@ -394,7 +402,7 @@ public class partidakAntolatu extends javax.swing.JFrame {
         String apellidoAmonestado = AbizenaUser.getText().substring(0, 1).toUpperCase() + AbizenaUser.getText().substring(1).toLowerCase();
         
         
-        ArrayList<Futbolista> amonestadosPorPartida = new ArrayList<Futbolista>();
+        //ArrayList<Futbolista> amonestadosPorPartida = new ArrayList<Futbolista>();
         
         for (int i = 0; i < futbolistasSeleccion.size(); ++i) {
             if (futbolistasSeleccion.get(i) != null) {
@@ -407,8 +415,16 @@ public class partidakAntolatu extends javax.swing.JFrame {
             }
         }
         
+        //crear la partida con los datos introducidos por el usuario (+ print)
+        Partida p1 = new Partida(partidarenData, aurkariaUser, amonestadosPorPartida);
+        
+        InfoPartida.setText("Fecha de la partida: " + p1.getData() + "\n"   //ver Fecha y Adversario de la partida
+                + "Adversario: " + p1.getAurkaria());
+        
+        
         System.out.println(amonestadosPorPartida);
         //visualizar jugadores amonestado en esta partida
+        AmonestadosPartida.setText("");
         for (int i = 0; i < amonestadosPorPartida.size(); ++i) {
             AmonestadosPartida.setText(AmonestadosPartida.getText() + amonestadosPorPartida.get(i) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
         }
@@ -420,11 +436,14 @@ public class partidakAntolatu extends javax.swing.JFrame {
         ++numeroPartidasCreadas;
         
         
-        //crear la partida con los datos introducidos por el usuario (+ print)
-        Partida p1 = new Partida(partidarenData, aurkariaUser, amonestadosPorPartida);
         
-        InfoPartida.setText("Fecha de la partida: " + p1.getData() + "\n"   //ver Fecha y Adversario de la partida
-                + "Adversario: " + p1.getAurkaria());
+        
+        
+        
+        
+        //habilitar el botón "OtraPartida" para crera una partida nueva
+        OtraPartida.setEnabled(true);
+        
         
     }//GEN-LAST:event_GuardarDatosPartidaActionPerformed
 
@@ -616,6 +635,13 @@ public class partidakAntolatu extends javax.swing.JFrame {
 
     private void OtraPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtraPartidaActionPerformed
         // TODO add your handling code here:
+        
+        amonestadosPorPartida.clear();
+        
+        CasillaFechaUser.setText("");
+        CasillaAurkariaUser.setText("");
+        IzenaUser.setEnabled(true);     IzenaUser.setText("");
+        AbizenaUser.setEnabled(true);     AbizenaUser.setText("");
     }//GEN-LAST:event_OtraPartidaActionPerformed
 
     /**
