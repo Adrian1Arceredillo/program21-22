@@ -130,8 +130,8 @@ public class Partida extends Futbolista {
     
     @Override
     public String toString() {
-        return "\tData: " + this.getData() + ", \n" + 
-                "\tAurkaria: " + this.getAurkaria() + ", \n\n" + 
+        return "Data: " + this.getData() + ", \n" + 
+                "Aurkaria: " + this.getAurkaria() + ", \n\n" + 
                 "\tTxartelak: \n" + this.getTxartelak();
                 
     }

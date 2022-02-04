@@ -15,6 +15,8 @@ import exekutagarriak.*;
 import static exekutagarriak.EuskalSelekzioaMenua.selekzioa;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -73,7 +75,7 @@ public class partidakAntolatu extends javax.swing.JFrame {
         CrearPlantilla = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         InfoPartida = new javax.swing.JTextArea();
-        RegistroTarjetas = new javax.swing.JButton();
+        RegistroPartidas = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         PlantillaJugadores = new javax.swing.JTextArea();
         FiltroJugadores = new javax.swing.JLabel();
@@ -102,6 +104,10 @@ public class partidakAntolatu extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         AmonestadosPartida = new javax.swing.JTextArea();
         Amonestados = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        todasLasPartidas = new javax.swing.JTextArea();
+        infoTodasLasPartidas = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -139,10 +145,10 @@ public class partidakAntolatu extends javax.swing.JFrame {
         InfoPartida.setText("Info partida:");
         jScrollPane1.setViewportView(InfoPartida);
 
-        RegistroTarjetas.setText("Todas las tarjetas");
-        RegistroTarjetas.addActionListener(new java.awt.event.ActionListener() {
+        RegistroPartidas.setText("VER TODAS LAS PARTIDAS");
+        RegistroPartidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistroTarjetasActionPerformed(evt);
+                RegistroPartidasActionPerformed(evt);
             }
         });
 
@@ -223,6 +229,13 @@ public class partidakAntolatu extends javax.swing.JFrame {
 
         Amonestados.setText("Amonestados:");
 
+        todasLasPartidas.setColumns(20);
+        todasLasPartidas.setRows(5);
+        todasLasPartidas.setText("Registro de partidas");
+        jScrollPane8.setViewportView(todasLasPartidas);
+
+        infoTodasLasPartidas.setText("RESUMEN TEMPORADA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,64 +243,72 @@ public class partidakAntolatu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FiltroJugadores)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
-                        .addGap(125, 125, 125)
-                        .addComponent(RegistroTarjetas)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(FiltroJugadores)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(VerNombresJugadores)
-                                .addGap(18, 18, 18)
-                                .addComponent(CrearPlantilla)
-                                .addGap(18, 18, 18)
-                                .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(FiltroMedicos)
-                            .addComponent(FiltroEntrenadores)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(FiltroOtros))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxartelakPartida)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(VerNombresJugadores)
+                        .addGap(18, 18, 18)
+                        .addComponent(CrearPlantilla)
+                        .addGap(18, 18, 18)
+                        .addComponent(VerPlantillaNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FiltroMedicos)
+                    .addComponent(FiltroEntrenadores)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FiltroOtros)
+                    .addComponent(jLabelTitulo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(RegistroPartidas)
+                            .addGap(434, 434, 434))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(TxartelakPartida)
+                                .addComponent(GuardarDatosPartida)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(DataPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(CasillaFechaUser))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(AurkariaPartida)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(CasillaAurkariaUser))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(CrearPartidaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(CrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(OtraPartida))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(IzenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(AbizenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(OtraTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(GuardarDatosPartida)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(InfoPartidaCreada))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Amonestados, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(117, 117, 117))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(InfoPartidaCreada)
+                                            .addGap(148, 148, 148))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jScrollPane1)
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Amonestados, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(DataPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CasillaFechaUser))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(AurkariaPartida)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CasillaAurkariaUser))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(CrearPartidaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(OtraPartida))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(IzenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(AbizenaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(OtraTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(117, 117, 117)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(infoTodasLasPartidas, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(271, 271, 271))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +316,7 @@ public class partidakAntolatu extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTitulo)
-                    .addComponent(RegistroTarjetas))
+                    .addComponent(RegistroPartidas))
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -343,18 +364,27 @@ public class partidakAntolatu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(InfoPartidaCreada)
                             .addComponent(Amonestados))))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane7)
+                        .addComponent(jScrollPane1)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(FiltroOtros)
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(infoTodasLasPartidas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane8))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -415,9 +445,18 @@ public class partidakAntolatu extends javax.swing.JFrame {
             }
         }
         
-        //crear la partida con los datos introducidos por el usuario (+ print)
+        //CREAR LA PARTIDA con los datos introducidos por el usuario (+ print)
         Partida p1 = new Partida(partidarenData, aurkariaUser, amonestadosPorPartida);
         
+        //añadir la partida al arrayList que recoge todas las partidas que se vayan creando
+        //partidaGuztiak
+        for (int f = 0; f < partidaGuztiak.length; ++f) {
+            if (partidaGuztiak[f] == null) {
+                partidaGuztiak[f] = (Partida) p1;
+                break;
+            }
+        }
+        System.out.println("TODAS LAS PARTIDAS: " + Arrays.toString(partidaGuztiak));
         InfoPartida.setText("Fecha de la partida: " + p1.getData() + "\n"   //ver Fecha y Adversario de la partida
                 + "Adversario: " + p1.getAurkaria());
         
@@ -443,6 +482,7 @@ public class partidakAntolatu extends javax.swing.JFrame {
         
         //habilitar el botón "OtraPartida" para crera una partida nueva
         OtraPartida.setEnabled(true);
+        RegistroPartidas.setEnabled(true);
         
         
     }//GEN-LAST:event_GuardarDatosPartidaActionPerformed
@@ -545,30 +585,31 @@ public class partidakAntolatu extends javax.swing.JFrame {
         PlantillaMedicos.setEditable(false);
         PlantillaOtros.setEditable(false);
         
-        /*for (int g = 0; g < niJugadorNiEntrenador.size(); ++g) {
-                if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Medico")) {    //en caso de ser Fisioterapeuta / de NO SER MÉDICO
-                    PlantillaMedicos.setText(PlantillaMedicos.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
-                            niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
-                    //System.out.println(niJugadorNiEntrenador.get(g));
-                    
-                } else if (niJugadorNiEntrenador.get(g).getTitulacion().equals("Fisioterapeuta")) {
-                    ++numFisio;
-                    PlantillaOtros.setText(PlantillaOtros.getText() + "Integrante: " + ++cantidadJugadoresTarjeta + "\n" + 
-                            niJugadorNiEntrenador.get(g) + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
-                    //System.out.println(niJugadorNiEntrenador.get(g));
-                    System.out.println(numFisio);
-                }
-            }*/
-        
         System.out.println("hola" + niJugadorNiEntrenador);
         
         
     }//GEN-LAST:event_CrearPlantillaActionPerformed
 
-    private void RegistroTarjetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroTarjetasActionPerformed
+    private void RegistroPartidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroPartidasActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_RegistroTarjetasActionPerformed
+        //todasLasPartidas
+        todasLasPartidas.setEnabled(true);
+        todasLasPartidas.setEditable(true);
+        todasLasPartidas.setText(Arrays.toString(partidaGuztiak));
+        todasLasPartidas.setText("");
+        
+        for (int i = 0; i < partidaGuztiak.length; ++i) {
+            if (partidaGuztiak[i] != null) {
+                todasLasPartidas.setText(todasLasPartidas.getText() + partidaGuztiak[i].toString() + "\n" + "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+                //todasLasPartidas.setText("a");
+            }
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_RegistroPartidasActionPerformed
 
     private void CrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPartidaActionPerformed
         // TODO add your handling code here:
@@ -693,6 +734,11 @@ public class partidakAntolatu extends javax.swing.JFrame {
                 OtraTarjeta.setEnabled(false);
                 OtraPartida.setEnabled(false);
                 
+                todasLasPartidas.setEditable(false);
+                todasLasPartidas.setEnabled(false);
+                
+                RegistroPartidas.setEnabled(false); //bloquear el botón para ver la info de todas las partidas creadas
+                
                 //partidakAntolatu.setPreferredSize(new Dimension(400, 300));
                 personalizacionJframe();
             }
@@ -714,14 +760,14 @@ public class partidakAntolatu extends javax.swing.JFrame {
      * características. 
      */
     public static void personalizacionJframe() {
-            //JFrame todasLasTarjetas = new JFrame("Partidak 112");
-            //adri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //JFrame todasLasPartidas= new JFrame("Partidak 112");
+            //todasLasPartidas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             
             
-            /*adri.setPreferredSize(new Dimension(400, 300));
-            adri.pack();
-            adri.setLocationRelativeTo(null);
-            adri.setVisible(true);*/
+            /*todasLasPartidas.setPreferredSize(new Dimension(400, 300));
+            todasLasPartidas.pack();
+            todasLasPartidas.setLocationRelativeTo(null);
+            todasLasPartidas.setVisible(true);*/
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -749,10 +795,11 @@ public class partidakAntolatu extends javax.swing.JFrame {
     public static javax.swing.JTextArea PlantillaJugadores;
     public static javax.swing.JTextArea PlantillaMedicos;
     public static javax.swing.JTextArea PlantillaOtros;
-    private javax.swing.JButton RegistroTarjetas;
+    public static javax.swing.JButton RegistroPartidas;
     public static javax.swing.JLabel TxartelakPartida;
     public static javax.swing.JLabel VerNombresJugadores;
     public static javax.swing.JLabel VerPlantillaNombres;
+    public static javax.swing.JLabel infoTodasLasPartidas;
     public static javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -761,8 +808,11 @@ public class partidakAntolatu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JTextArea todasLasPartidas;
     // End of variables declaration//GEN-END:variables
 }
