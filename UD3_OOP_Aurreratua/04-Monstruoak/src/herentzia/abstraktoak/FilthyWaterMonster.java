@@ -7,7 +7,7 @@ package herentzia.abstraktoak;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public class FilthyWaterMonster extends WaterMonster {
     
@@ -17,7 +17,7 @@ public class FilthyWaterMonster extends WaterMonster {
     }
     
     
-    
+    //@Override
     public String attack() {
         return "Attack with FILTHY WATER! ";
     }

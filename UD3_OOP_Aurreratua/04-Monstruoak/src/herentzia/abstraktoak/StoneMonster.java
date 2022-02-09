@@ -7,7 +7,7 @@ package herentzia.abstraktoak;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public class StoneMonster extends Monster {
     

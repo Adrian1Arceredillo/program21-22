@@ -7,7 +7,7 @@ package herentzia;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public class Monster {
     

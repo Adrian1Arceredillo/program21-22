@@ -7,7 +7,7 @@ package herentzia.abstraktoak;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public abstract class Monster {
     
@@ -27,9 +27,6 @@ public abstract class Monster {
      * subclases. 
      * @return 
      */
-    abstract public String attack();
+    public abstract String attack();
     
 }
-
-
-//las clases abstractas no se pueden instanciar

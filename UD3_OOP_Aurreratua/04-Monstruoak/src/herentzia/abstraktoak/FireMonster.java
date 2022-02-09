@@ -7,7 +7,7 @@ package herentzia.abstraktoak;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public class FireMonster extends Monster {
     
@@ -23,14 +23,11 @@ public class FireMonster extends Monster {
     public FireMonster(String name) {
         super(name);
     }
-
+    
+    
     @Override
     public String attack() {
         return "Attack with FIRE! ";
     }
-
-    
-    
-    
     
 }

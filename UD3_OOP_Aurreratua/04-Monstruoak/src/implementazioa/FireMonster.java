@@ -7,7 +7,7 @@ package implementazioa;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public class FireMonster implements Monstruosoa {
     
@@ -30,7 +30,7 @@ public class FireMonster implements Monstruosoa {
         return "Attack with FIRE! ";
     }
 
-    
+        
     
     
     

@@ -7,7 +7,7 @@ package implementazioa;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public interface Monstruosoa {
     //en caso de haber atributos, tendrían que ser PÚBLICOS Y ESTÁTICOS (= klase mailakoak)
@@ -19,7 +19,7 @@ public interface Monstruosoa {
      */
     public String attack();
     
+    
 }
-
 
 //las clases abstractas no se pueden instanciar

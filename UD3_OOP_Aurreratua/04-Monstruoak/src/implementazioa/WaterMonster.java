@@ -7,7 +7,7 @@ package implementazioa;
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public class WaterMonster implements Monstruosoa {
     
@@ -37,3 +37,4 @@ public class WaterMonster implements Monstruosoa {
     }
     
 }
+

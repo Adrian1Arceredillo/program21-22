@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package herentzia.abstraktoak;
+package implementazioa;
+//import herentzia.*;
+
 
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
-public class FilthyWaterMonster extends WaterMonster {
+public class FilthyWaterMonster extends WaterMonster implements Monstruosoa {
     
     
     public FilthyWaterMonster(String name) {
         super(name);
     }
-    
     
     
     public String attack() {

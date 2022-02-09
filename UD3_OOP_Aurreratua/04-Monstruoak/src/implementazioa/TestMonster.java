@@ -5,10 +5,9 @@
  */
 package implementazioa;
 
-
 /**
  *
- * @author arceredillo.adrian
+ * @author AdriAlex
  */
 public class TestMonster {
 
@@ -26,6 +25,12 @@ public class TestMonster {
         // m1 dies, generate a new instance and re-assign to m1.
         m1 = new StoneMonster("a2b2");  // upcast
         System.out.println(m1.attack());
+        
+        System.out.println("--------");
+        Monstruosoa filthy1 = new FilthyWaterMonster("Filthy");
+        System.out.println(filthy1.attack());
+        System.out.println("b");
+        
         // We have a problem here!!!
         //Monstruosoa m4 = new Monstruosoa("u2u2");   //la clase Monstruosoa NO se puede instanciar - ya que es abstracta
         
