@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package exekutagarriak;
 
 import java.util.*;
+import model.Bezeroa;
+import model.Empresa;
+import model.Pertsona;
 
 /**
  *
@@ -19,12 +22,11 @@ public class TestBezeroa {
     public static void main(String[] args) {
         
         /*--------------Pertsona------------------*/
-        Bezeroa bezP1 = new Pertsona(2, "Martin \tBerasategi", 
+        Bezeroa bezP1 = new Pertsona(2, "Martin", "Berasategi", 
                     "Mirakontxa z/g. DONOSTIA.", "mbera@donostia.eus");
         
-        System.out.println("Pertsona tipoko Bezero bat: ");
-        System.out.println("---------------------------");
-        System.out.println("DATUAK: \n");
+        //System.out.println("Pertsona tipoko Bezero bat: ");
+        System.out.println("-> PERTSONA tipoko Bezero bat. \n");
         System.out.println(bezP1.toString());
         
         
@@ -52,9 +54,10 @@ public class TestBezeroa {
         Bezeroa bezE1 = new Empresa(3, "Uni Eibar-Ermua", "Unibertsitatea", 
                 "Otaola Etorbidea 29. EIBAR. ", todosContactosEmpresa);
         
-        System.out.println("Empresa tipoko Bezero bat: ");
+        
         System.out.println("---------------------------");
-        System.out.println("DATUAK: \n");
+        System.out.println("---------------------------");
+        System.out.println("-> EMPRESA tipoko Bezero bat. \n");
         System.out.println(bezE1.toString());
         
     }

@@ -13,7 +13,7 @@ public class Pertsona implements Bezeroa {
     
     private int kodea;
     private String izena;
-    //private String abizena;
+    private String abizena;
     private String helbidea;
     private String emaila;
     
@@ -26,11 +26,12 @@ public class Pertsona implements Bezeroa {
      * @param helbidea
      * @param emaila 
      */
-    public Pertsona(int kodea, String izena, /*String abizena*/ 
+    public Pertsona(int kodea, String izena, String abizena, 
             String helbidea, String emaila) {
         
         this.kodea = kodea;
         this.izena = izena;
+        this.abizena = abizena;
         this.helbidea = helbidea;
         this.emaila = emaila;
         
@@ -44,8 +45,8 @@ public class Pertsona implements Bezeroa {
         return this.izena;
     }
     
-    public String abizena() {
-        return this.abizena();
+    public String getAbizena() {
+        return abizena;
     }
     
     public String getHelbidea() {
@@ -57,11 +58,33 @@ public class Pertsona implements Bezeroa {
     }
     
     
+    public void setKodea(int kodea) {
+        this.kodea = kodea;
+    }
+
+    public void setIzena(String izena) {
+        this.izena = izena;
+    }
+    
+    public void setAbizena(String abizena) {
+        this.abizena = abizena;
+    }
+            
+    public void setHelbidea(String helbidea) {
+        this.helbidea = helbidea;
+    }
+
+    public void setEmaila(String emaila) {
+        this.emaila = emaila;
+    }
+    
+    
+    
     public String toString() {
-        return "Bezeroa: " + this.kodea + 
-                "\nIzena: " + this.izena + 
-                "\nHelbidea: " + this.helbidea + 
-                "\neMail: " + this.emaila;
+        return this.kodea + 
+                "\n\tIzena: " + this.izena + "\t" + this.getAbizena() + 
+                "\n\tHelbidea: " + this.helbidea + 
+                "\n\teMail: " + this.emaila;
     }
     
 }

@@ -95,8 +95,15 @@ public class Erosketa {
     public void setUnitateak(ArrayList<Integer> unitateak) {
         this.unitateak = unitateak;
     }
-
+    
     public double getGuztira() {
+        
+        /*double totalCompra = 0;
+        for (int i = 0; i < produktuak.size(); ++i) {
+            totalCompra = totalCompra + (produktuak.get(i).getPrezioa() * unitateak.get(i));
+        }
+        this.guztira = totalCompra;*/
+        
         return guztira;
     }
 
@@ -104,6 +111,44 @@ public class Erosketa {
         this.guztira = guztira;
     }
     
+    /**
+     * Método para devolver en formato String, el char[] que guarda los 
+     * valroes del kodea. Es decir, mediante el constructor se le pasa 
+     * un String, y el mismo constructor se encarga de guardar dicho String 
+     * en char[] kodea.
+     * 
+     * Con este método, buscamos imprimir el contenido del char[] como si 
+     * fuese un String. 
+     * 
+     * @return 
+     */
+    public String getStrKodea() {
+        String kodeaString = "";
+        for (int i = 0; i < this.kodea.length; ++i) {
+            kodeaString = kodeaString + kodea[i];
+        }
+        
+        return kodeaString;
+    }
+    
+    
+    public String getStrProduktuak() {
+        String cadaProducto = "";
+        String listaTodosLosProductos = "";
+        
+        for (int i = 0; i < produktuak.size(); ++i) {
+            cadaProducto = (i + 1) + ". produktua: " + produktuak.get(i).getStrKodea() + ", " + 
+                    produktuak.get(i).getIzena() +", " + 
+                    unitateak.get(i).toString() + ", " + 
+                    produktuak.get(i).getPrezioa() + ", \n\t\t\t\tGuztira: " + 
+                    produktuak.get(i).getPrezioa() * unitateak.get(i) + "\n";
+            //cadaProducto = produktuak.get(i).toString();
+            listaTodosLosProductos = listaTodosLosProductos + cadaProducto + "\n";
+            //"Kodea \tProduktua \t\tUnitateak \tPrezioa \tZenbatekoa" + "\n" + 
+        }
+        return listaTodosLosProductos;
+        
+    }
     
     
     
@@ -112,9 +157,8 @@ public class Erosketa {
      * @return 
      */
     public String toString() {
-        return "Kodea: " + this.getKodea() + "\tData: " + this.getData() + 
-                "\nBezeroa: " + this.getBezeroa() + "\tProduktuak: " + this.getProduktuak() + 
-                "\tUnitateak: " + this.getUnitateak() + "\nGuztira: " + this.getGuztira();
+        return "\tKodea: " + this.getStrKodea() + "\tData: " + this.getData() + 
+                "\n\tBezeroa: " + this.getBezeroa();
     }
     
     
@@ -124,7 +168,22 @@ public class Erosketa {
      * @return 
      */
     public String toStringLuzea() {
-        return "a";
+        int numProd = 0;
+        
+        return "\tKodea: " + this.getStrKodea() + "\tData: " + this.getData() + 
+                "\n\tBezeroa: " + this.getBezeroa().getKodea() + 
+                "\n\tIzena: " + this.getBezeroa().getIzena() + "\t\t" + this.getBezeroa().getIzena() + 
+                "\n\tHelbidea: " + this.getBezeroa().getHelbidea() + 
+                "\n\teMail: " + this.getBezeroa().getEmaila() + "\n" + 
+                "\n" +
+                getStrProduktuak();
+        
+    }
+    
+    
+    public boolean guztiraEgiaztatu() {
+        
+        return false;
     }
     
 }

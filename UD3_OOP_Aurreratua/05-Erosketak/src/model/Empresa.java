@@ -61,12 +61,46 @@ public class Empresa implements Bezeroa {
         return Arrays.toString(this.kontaktoenEmailak);
     }
     
+    
+    public void setKodea(int kodea) {
+        this.kodea = kodea;
+    }
+
+    public void setIzenJuridikoa(String izenJuridikoa) {
+        this.izenJuridikoa = izenJuridikoa;
+    }
+
+    public void setIzenKomertziala(String izenKomertziala) {
+        this.izenKomertziala = izenKomertziala;
+    }
+
+    public void setHelbidea(String helbidea) {
+        this.helbidea = helbidea;
+    }
+
+    public static void setKontaktoenEmailak(String[] kontaktoenEmailak) {
+        Empresa.kontaktoenEmailak = kontaktoenEmailak;
+    }
+    
+    
+    public String getStrkontaktoenEmailak() {
+        String stringContactosEmail = "";
+        for (int i = 0; i < kontaktoenEmailak.length; ++i) {
+            if (kontaktoenEmailak[i] != null) {
+                stringContactosEmail = stringContactosEmail + kontaktoenEmailak[i] + ", ";
+            }
+        }
+        
+        return stringContactosEmail;
+    }
+    
+    
     public String toString() {
         
-        return "Bezeroa: " + this.kodea + 
-                "\nIzena: " + this.getIzena() + 
-                "\nHelbidea: " + this.helbidea + 
-                "\neMail: " + this.getEmaila();
+        return this.kodea + 
+                "\n\tIzena: " + this.getIzena() + 
+                "\n\tHelbidea: " + this.helbidea + 
+                "\n\teMail: " + this.getStrkontaktoenEmailak();
     }
     
 }

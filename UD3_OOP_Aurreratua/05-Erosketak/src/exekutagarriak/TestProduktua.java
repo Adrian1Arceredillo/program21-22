@@ -3,16 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package exekutagarriak;
+
+import model.*;
 
 /**
  *
  * @author arceredillo.adrian
  */
-public class TestErosketa {
+public class TestProduktua {
     public static void main(String[] args) {
         
-        //Erosketa erosketa1 = new Erosketa("E18E01", (Bezeroa) new Bezeroa);
+        //crear un nuevo Produktua
+        Produktua p1 = new Produktua("S01", "Pionner DJM", 650);
+        
+        System.out.println(p1.toString());
         
     }
 }
