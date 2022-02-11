@@ -38,8 +38,8 @@ public class Erosketa {
     
     
     public Erosketa(String kodea, String data,Bezeroa eroslea, 
-            ArrayList<Produktua> produktuak, ArrayList<Integer> unitateak, 
-            double guztira) {
+            ArrayList<Produktua> produktuak, ArrayList<Integer> unitateak/*, 
+            double guztira*/) {
         
         //código de la compra
         this.kodea = new char[kodea.length()];
@@ -52,7 +52,9 @@ public class Erosketa {
         this.bezeroa = eroslea; //comprador
         this.produktuak = produktuak;   //productos de la compra
         this.unitateak = unitateak; //unidades de cada producto de la compra
-        this.guztira = guztira;
+        
+        //this.guztira = guztira;
+        this.guztira = getGuztira();
         
     }
 
@@ -98,17 +100,32 @@ public class Erosketa {
     
     public double getGuztira() {
         
-        /*double totalCompra = 0;
+        double totalPrecioProdMismoTipo = 0;
         for (int i = 0; i < produktuak.size(); ++i) {
-            totalCompra = totalCompra + (produktuak.get(i).getPrezioa() * unitateak.get(i));
+            totalPrecioProdMismoTipo = totalPrecioProdMismoTipo + 
+                    (produktuak.get(i).getPrezioa() * unitateak.get(i));
         }
-        this.guztira = totalCompra;*/
+        //this.guztira = totalCompra;
+        //return guztira;
+        return totalPrecioProdMismoTipo;
         
-        return guztira;
     }
 
     public void setGuztira(double guztira) {
         this.guztira = guztira;
+    }
+    
+    
+    public double calcularZenbatekoa() {
+        ArrayList<Double> preciosAgrupadosCompra = new ArrayList<>();
+        preciosAgrupadosCompra.add(getGuztira());
+        /*for (int i = 0; i < produktuak.size(); ++i) {
+            preciosAgrupadosCompra.add(produktuak.get(i).getPrezioa() * 
+                    unitateak.get(i));
+        }*/
+        
+        
+        return 0;
     }
     
     /**
@@ -140,8 +157,11 @@ public class Erosketa {
             cadaProducto = (i + 1) + ". produktua: " + produktuak.get(i).getStrKodea() + ", " + 
                     produktuak.get(i).getIzena() +", " + 
                     unitateak.get(i).toString() + ", " + 
-                    produktuak.get(i).getPrezioa() + ", \n\t\t\t\tGuztira: " + 
+                    produktuak.get(i).getPrezioa() + ", \n\t\t\t\tZenbatekoa: " + 
                     produktuak.get(i).getPrezioa() * unitateak.get(i) + "\n";
+                    /*produktuak.get(i).getPrezioa() + ", \n\t\t\t\tGuztira: " + */
+                    /*produktuak.get(i).getPrezioa() * unitateak.get(i) + "\n";*/
+                    
             //cadaProducto = produktuak.get(i).toString();
             listaTodosLosProductos = listaTodosLosProductos + cadaProducto + "\n";
             //"Kodea \tProduktua \t\tUnitateak \tPrezioa \tZenbatekoa" + "\n" + 
@@ -175,13 +195,18 @@ public class Erosketa {
                 "\n\tIzena: " + this.getBezeroa().getIzena() + "\t\t" + this.getBezeroa().getIzena() + 
                 "\n\tHelbidea: " + this.getBezeroa().getHelbidea() + 
                 "\n\teMail: " + this.getBezeroa().getEmaila() + "\n" + 
-                "\n" +
-                getStrProduktuak();
+                getStrProduktuak() +  
+                "----------------------------------------------------\n" + 
+                "\t\t\t\tGuztira: " + guztira + "\n";
         
     }
     
     
     public boolean guztiraEgiaztatu() {
+        
+        for (int i = 0; i < produktuak.size(); ++i) {
+            
+        }
         
         return false;
     }

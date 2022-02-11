@@ -44,17 +44,17 @@ public class ObjektuBanaSortu {
         
         
         //calcular el valor de Guztira
+        /*
         double totalCompra = 0;
         for (int i = 0; i < erosketaHonetakoProduktuak.size(); ++i) {
             totalCompra = totalCompra + 
                     (erosketaHonetakoProduktuak.get(i).getPrezioa() * 
                     erosketaHonetakoUnitateak.get(i));
         }
-        
+        */
         //Erosketa
         Erosketa gaurkoErosketa = new Erosketa("E18-02", "2018-10-24", karlos,
-                    erosketaHonetakoProduktuak, erosketaHonetakoUnitateak, 
-                    totalCompra);
+                    erosketaHonetakoProduktuak, erosketaHonetakoUnitateak);
         
         System.out.println("gaurkoErosketa => \n" + gaurkoErosketa.toString());
         System.out.println("----------------");

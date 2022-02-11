@@ -30,7 +30,7 @@ public class EpekakoErosketa extends Erosketa {
             ArrayList<Produktua> produktuak, ArrayList<Integer> unitateak, 
             double guztira, double kuota) {
         
-        super(kodea, data, eroslea, produktuak, unitateak, guztira);
+        super(kodea, data, eroslea, produktuak, unitateak/*, guztira*/);
         this.kuota = kuota;
     }
     
