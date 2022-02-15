@@ -34,4 +34,7 @@ public class EpekakoErosketa extends Erosketa {
         this.kuota = kuota;
     }
     
+    
+    
+    
 }

@@ -58,7 +58,15 @@ public class Empresa implements Bezeroa {
     }
     
     public String getEmaila() {
-        return Arrays.toString(this.kontaktoenEmailak);
+        String stringContactosEmail = "";
+        for (int i = 0; i < kontaktoenEmailak.length; ++i) {
+            if (kontaktoenEmailak[i] != null) {
+                stringContactosEmail = stringContactosEmail + kontaktoenEmailak[i] + ", ";
+            }
+        }
+        
+        return stringContactosEmail;
+        //return Arrays.toString(this.kontaktoenEmailak);
     }
     
     

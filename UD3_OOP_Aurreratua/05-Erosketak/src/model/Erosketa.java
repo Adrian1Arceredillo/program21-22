@@ -16,7 +16,7 @@ public class Erosketa {
     
     
     protected char[] kodea;
-    protected LocalDate data;
+    protected LocalDate data = LocalDate.now();;
     protected Bezeroa bezeroa;
     protected ArrayList<Produktua> produktuak;
     protected ArrayList<Integer> unitateak;
@@ -37,7 +37,7 @@ public class Erosketa {
     }
     
     
-    public Erosketa(String kodea, String data,Bezeroa eroslea, 
+    public Erosketa(String kodea, String dataUser,Bezeroa eroslea, 
             ArrayList<Produktua> produktuak, ArrayList<Integer> unitateak/*, 
             double guztira*/) {
         
@@ -47,7 +47,13 @@ public class Erosketa {
             this.kodea[i] = kodea.charAt(i);
         }
         
-        LocalDate fechaCompra = LocalDate.parse(data);  //fecha de la compra
+        /*
+        if(dataUser == null) {  //si el parámetro de entrada de la fecha es nulo, se pondrá la fecha de hoy por defecto
+            this.data = LocalDate.now();
+        }
+        */
+        
+        LocalDate fechaCompra = LocalDate.parse(dataUser);  //fecha de la compra
         this.data = fechaCompra;
         this.bezeroa = eroslea; //comprador
         this.produktuak = produktuak;   //productos de la compra
@@ -178,7 +184,7 @@ public class Erosketa {
      */
     public String toString() {
         return "\tKodea: " + this.getStrKodea() + "\tData: " + this.getData() + 
-                "\n\tBezeroa: " + this.getBezeroa();
+                "\n\tBezeroa: " + this.getBezeroa() + "\n" + guztira + "\n";
     }
     
     
@@ -194,10 +200,9 @@ public class Erosketa {
                 "\n\tBezeroa: " + this.getBezeroa().getKodea() + 
                 "\n\tIzena: " + this.getBezeroa().getIzena() + "\t\t" + this.getBezeroa().getIzena() + 
                 "\n\tHelbidea: " + this.getBezeroa().getHelbidea() + 
-                "\n\teMail: " + this.getBezeroa().getEmaila() + "\n" + 
+                "\n\teMail: " + this.getBezeroa().getEmaila() + "\n\nº" + 
                 getStrProduktuak() +  
-                "----------------------------------------------------\n" + 
-                "\t\t\t\tGuztira: " + guztira + "\n";
+                "--------------------------------Guztira: " + guztira + "------\n";
         
     }
     
