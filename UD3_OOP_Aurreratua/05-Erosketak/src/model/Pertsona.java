@@ -42,7 +42,7 @@ public class Pertsona implements Bezeroa {
     }
     
     public String getIzena() {
-        return this.izena;
+        return this.izena + "\t" + this.abizena;
     }
     
     public String getAbizena() {
@@ -82,7 +82,7 @@ public class Pertsona implements Bezeroa {
     
     public String toString() {
         return this.kodea + 
-                "\n\tIzena: " + this.izena + "\t" + this.getAbizena() + 
+                "\n\tIzena: " + this.getIzena() + 
                 "\n\tHelbidea: " + this.helbidea + 
                 "\n\teMail: " + this.emaila;
     }

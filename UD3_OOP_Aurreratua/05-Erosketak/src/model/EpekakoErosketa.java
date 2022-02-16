@@ -31,6 +31,7 @@ public class EpekakoErosketa extends Erosketa {
             double guztira, double kuota) {
         
         super(kodea, data, eroslea, produktuak, unitateak/*, guztira*/);
+        this.guztira = guztira;
         this.kuota = kuota;
     }
     

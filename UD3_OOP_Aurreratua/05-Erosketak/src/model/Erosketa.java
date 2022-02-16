@@ -24,7 +24,7 @@ public class Erosketa {
     
     
     
-    public Erosketa(String kodea, Bezeroa bezeroa, double guztira) {
+    public Erosketa(String kodea, Bezeroa bezeroa, double guztira1) {
         
         this.kodea = new char[kodea.length()];
         
@@ -33,7 +33,7 @@ public class Erosketa {
         }
         
         this.bezeroa = bezeroa;
-        this.guztira = guztira;
+        this.guztira = guztira1;
     }
     
     
@@ -47,14 +47,14 @@ public class Erosketa {
             this.kodea[i] = kodea.charAt(i);
         }
         
-        /*
+        
         if(dataUser == null) {  //si el parámetro de entrada de la fecha es nulo, se pondrá la fecha de hoy por defecto
             this.data = LocalDate.now();
-        }
-        */
+        } else {
+            LocalDate fechaCompra = LocalDate.parse(dataUser);  //fecha de la compra        
+            this.data = fechaCompra;
+        } 
         
-        LocalDate fechaCompra = LocalDate.parse(dataUser);  //fecha de la compra
-        this.data = fechaCompra;
         this.bezeroa = eroslea; //comprador
         this.produktuak = produktuak;   //productos de la compra
         this.unitateak = unitateak; //unidades de cada producto de la compra
@@ -111,7 +111,7 @@ public class Erosketa {
             totalPrecioProdMismoTipo = totalPrecioProdMismoTipo + 
                     (produktuak.get(i).getPrezioa() * unitateak.get(i));
         }
-        //this.guztira = totalCompra;
+        //this.guztira = totalPrecioProdMismoTipo;
         //return guztira;
         return totalPrecioProdMismoTipo;
         
@@ -129,7 +129,6 @@ public class Erosketa {
             preciosAgrupadosCompra.add(produktuak.get(i).getPrezioa() * 
                     unitateak.get(i));
         }*/
-        
         
         return 0;
     }
@@ -152,6 +151,11 @@ public class Erosketa {
         }
         
         return kodeaString;
+    }
+    
+    
+    public double verTotalCompra() {
+        return this.guztira;
     }
     
     
@@ -184,7 +188,8 @@ public class Erosketa {
      */
     public String toString() {
         return "\tKodea: " + this.getStrKodea() + "\tData: " + this.getData() + 
-                "\n\tBezeroa: " + this.getBezeroa() + "\n" + guztira + "\n";
+                "\n\tBezeroa: " + this.getBezeroa() + "\n\n" + 
+                "--------------------------------Guztira: " + guztira + "------\n";
     }
     
     
@@ -198,7 +203,7 @@ public class Erosketa {
         
         return "\tKodea: " + this.getStrKodea() + "\tData: " + this.getData() + 
                 "\n\tBezeroa: " + this.getBezeroa().getKodea() + 
-                "\n\tIzena: " + this.getBezeroa().getIzena() + "\t\t" + this.getBezeroa().getIzena() + 
+                "\n\tIzena: " + this.getBezeroa().getIzena() + 
                 "\n\tHelbidea: " + this.getBezeroa().getHelbidea() + 
                 "\n\teMail: " + this.getBezeroa().getEmaila() + "\n\nº" + 
                 getStrProduktuak() +  
