@@ -49,7 +49,7 @@ public class ErosketaKudeatu {
                     read();
                     break;
                 case 3:
-                    //update();
+                    update();
                     break;
                 case 4:
                     delete();
@@ -76,7 +76,7 @@ public class ErosketaKudeatu {
         eMailakEmpresa[1] = "zuzendaria@uni.eus";
 
         //crear los clientes
-        Bezeroa karlos = new Pertsona(1, "Karlos", "Argiñano", "Hondartza Pasialekua z/g ZARAUTZ", "kargi@zarautz.eus");
+        Bezeroa karlos = new Pertsona(1, "Karlos", "Arginano", "Hondartza Pasialekua z/g ZARAUTZ", "kargi@zarautz.eus");
         Bezeroa martin = new Pertsona(2, "Martin", "Berasategi", "Mirakontxa z/g. DONOSTIA.", "mbera@donostia.eus");
         Bezeroa uni = new Empresa(3, "IES Uni", "Eibar-Ermua", "Otaola Hiribidea 29 Eibar", eMailakEmpresa);
 
@@ -157,6 +157,17 @@ public class ErosketaKudeatu {
 
         Erosketa compraUni1 = new Erosketa("E21-01", "2020-01-17",
                 uni, productosUni1, unidadesUni1);
+        
+        
+        
+        double guztiraCompraNueva = 0;
+            for (int i = 0; i < productosUni1.size(); ++i) {
+                guztiraCompraNueva = guztiraCompraNueva
+                        + (productosUni1.get(i).getPrezioa() * unidadesUni1.get(i));
+            }
+            
+        EpekakoErosketa erosketaBerria = new EpekakoErosketa("E44-02", null, kontaktuak.get(2),
+                    productosUni1, unidadesUni1, guztiraCompraNueva, 300);
 
         //añadir compra al arrayList de todas las compras
         erosketenZerrenda.add(compraMartin1);
@@ -164,6 +175,7 @@ public class ErosketaKudeatu {
         erosketenZerrenda.add(compraKarlos2);
         erosketenZerrenda.add(compraKarlos3);
         erosketenZerrenda.add(compraUni1);
+        erosketenZerrenda.add(erosketaBerria);
 
         System.out.println(erosketenZerrenda.toString());
 
@@ -227,9 +239,6 @@ public class ErosketaKudeatu {
         }
 
         System.out.println("");
-        System.out.println("Carrito compra: \n" + productosCompraNueva);
-        System.out.println("Unidades compra: " + unidadesCompraNueva);
-
         System.out.print("Epekako erosketa da? (bai/ez): ");
         epekaUser = in.next().toLowerCase();
 
@@ -240,13 +249,15 @@ public class ErosketaKudeatu {
             if (kontaktuak.get(i).getKodea() == bezeroKodeaUser) {
                 if (kontaktuak.get(i).getClass() == Pertsona.class) {
                     posClienteUser = i;
+                } else if (kontaktuak.get(i).getClass() == Empresa.class) {
+                    posClienteUser = i;
                 } else {
                     System.out.println("No se ha encontrado ese cliente. ");
                 }
+                posClienteUser = i;
             }
         }
 
-        
         if (epekaUser.equals("ez")) {
             System.out.println("\nErosketa normala da! \n");
             Erosketa erosketaBerria = new Erosketa(compraUser, null, kontaktuak.get(posClienteUser),
@@ -258,20 +269,24 @@ public class ErosketaKudeatu {
 
         } else if (epekaUser.equals("bai")) {
 
-            System.out.print("Guztira ordaindu beharrekoa: ");
-            guztiraUser = in.nextDouble();
-            
+            /*System.out.print("Guztira ordaindu beharrekoa: ");
+            guztiraUser = in.nextDouble();*/
             System.out.println("\n\tEpekako erosketa bat da! \n");
             System.out.print("Zenbatekoa izango da kuota bakoitza? ");
             double cadaCuotaUser = in.nextDouble();
 
-            ArrayList<Produktua> productosEpeka = new ArrayList<>();
-            ArrayList<Integer> unitateakEpeka = new ArrayList<>();
+            //ArrayList<Produktua> productosEpeka = new ArrayList<>();
+            //ArrayList<Integer> unitateakEpeka = new ArrayList<>();
+            double guztiraCompraNueva = 0;
+            for (int i = 0; i < productosCompraNueva.size(); ++i) {
+                guztiraCompraNueva = guztiraCompraNueva
+                        + (productosCompraNueva.get(i).getPrezioa() * unidadesCompraNueva.get(i));
+            }
 
             EpekakoErosketa erosketaBerria = new EpekakoErosketa(compraUser, null, kontaktuak.get(posClienteUser),
-                    productosCompraNueva, unidadesCompraNueva, guztiraUser, cadaCuotaUser);
+                    productosCompraNueva, unidadesCompraNueva, guztiraCompraNueva, cadaCuotaUser);
 
-            System.out.println("Gainetik ordaindu beharko den kantitatea: " + erosketaBerria.gainetikOrdainduBeharrekoa());
+            //System.out.println("Gainetik ordaindu beharko den kantitatea: " + erosketaBerria.gainetikOrdainduBeharrekoa());
             erosketenZerrenda.add(erosketaBerria);
 
         }
@@ -372,8 +387,9 @@ public class ErosketaKudeatu {
             }
 
         }
-        System.out.println("\t-> Mejor cliente: " + erosketenZerrenda.get(posicionCompraMax).getBezeroa().getIzena());
-        System.out.println("\t-> Gasto del cliente: " + maxCompra);
+        //System.out.println("\t-> Bezerorik onena: " + erosketenZerrenda.get(posicionCompraMax).getBezeroa().getIzena());
+        System.out.println("\t-> Bezerorik onena: \n" + erosketenZerrenda.get(posicionCompraMax).getBezeroa());
+        System.out.println("\n\t-> Gasto del cliente: " + maxCompra);
     }
 
     /**
@@ -382,15 +398,36 @@ public class ErosketaKudeatu {
      */
     public static void helbideaBilatu() {
         Scanner in = new Scanner(System.in);
-        System.out.print("Sartu bezeroaren helbidea: ");
-        String direccionUser = in.nextLine();
+        System.out.print("Sartu bezeroaren abizena: ");
+        String apellidoUser = in.next().toLowerCase();
+        
+        
 
         for (int i = 0; i < kontaktuak.size(); ++i) {
-            if (kontaktuak.get(i).getHelbidea().toLowerCase().equals(direccionUser.toLowerCase())) {
+            
+            if (kontaktuak.get(i).getClass() == Pertsona.class) {
+                Pertsona personaBuscada = (Pertsona) (kontaktuak.get(i));
+                
+                if (personaBuscada.getAbizena().toLowerCase().equals(apellidoUser)) {
+                    System.out.println("\n\t-> Izen osoa: " + personaBuscada.getIzena());
+                    System.out.println("\t-> Helbidea: " + personaBuscada.getHelbidea());
+                }
+                
+            } else if (kontaktuak.get(i).getClass() == Empresa.class) {
+                Empresa empresaBuscada = (Empresa) (kontaktuak.get(i));
+                
+                if (empresaBuscada.getIzenKomertziala().toLowerCase().equals(apellidoUser)) {
+                    System.out.println("\n\t-> Empresaren izena: " + empresaBuscada.getIzena());    //izenKomertziala
+                    System.out.println("\t-> Helbidea: " + empresaBuscada.getHelbidea());
+                }
+            }
+            
+            /*
+            if (kontaktuak.get(i).getIzena().toLowerCase().equals(nombreUser.toLowerCase())) {
                 System.out.println("\tKodea: " + kontaktuak.get(i).getKodea() + "\n"
                         + "\tIzena: " + kontaktuak.get(i).getIzena() + "\n"
                         + "\tHelbidea: " + kontaktuak.get(i).getHelbidea());
-            }
+            }*/
         }
     }
 
@@ -399,11 +436,33 @@ public class ErosketaKudeatu {
      */
     public static void epekakoErosketenTxostena() {
         int numeroComprasPlazos = 0;
-        for (int i = 0; i < erosketenZerrenda.size(); ++i) {
+        
+        ArrayList<EpekakoErosketa> epekakoErosketak = new ArrayList<EpekakoErosketa>();
+        
+        System.out.println("");
+        System.out.println("EPEKAKO EROSKETEN TXOSTENA: ");
+        System.out.println("============================");
+        System.out.printf("%-10s %-20s %-10s %10s %-10s %10s %s\n", "Data", "Bezeroa", "GuztiraES","Epeak","Kuota","GuztiraEP", "Ordaindua");
+        System.out.println("-----------------------------------------------------------------------------------");
+        for (int i = 0; i < erosketenZerrenda.size(); i++) {
             if (erosketenZerrenda.get(i).getClass() == EpekakoErosketa.class) {
-                System.out.println(erosketenZerrenda.get(i));
+                epekakoErosketak.add((EpekakoErosketa) erosketenZerrenda.get(i));
+                
             }
         }
+        
+        for (int x = 0; x < epekakoErosketak.size(); ++x) {
+            System.out.printf("%-10s %-20s %-10.2f %10d %-10.2f %10.2f %b\n",    //System.out.printf("%10s %10s %-18.2f %-2d %-15.2f %-10.2f %b\n", 
+                        epekakoErosketak.get(x).getData().toString(), 
+                        epekakoErosketak.get(x).getBezeroa().getIzena(), 
+                        epekakoErosketak.get(x).getGuztira(), 
+                        epekakoErosketak.get(x).getEpeak(), 
+                        epekakoErosketak.get(x).getKuota(), 
+                        epekakoErosketak.get(x).getEpeak() * epekakoErosketak.get(x).getKuota(), 
+                        epekakoErosketak.get(x).isOrdainketaBukatuta());
+        }   //isOrdainketaBukatuta
+        
+        
 
     }
 
@@ -416,8 +475,19 @@ public class ErosketaKudeatu {
         System.out.println("");
         System.out.print("Sartu erosketaren KODE BERRIA: ");
         String nuevoCodigoCompraUser = in.next();
-
-        //System.out.println("\tErosketa baten kodea");
+        
+        char[] nuevoCodigoCompra = new char[nuevoCodigoCompraUser.length()];
+        
+        for (int i = 0; i < nuevoCodigoCompra.length; ++i) {
+            nuevoCodigoCompra[i] = nuevoCodigoCompraUser.charAt(i);
+        }
+        
+        for (int i = 0; i < erosketenZerrenda.size(); ++i) {
+            if (erosketenZerrenda.get(i).getStrKodea().equals(erosketaKodeaUser)) {
+                erosketenZerrenda.get(i).setKodea(nuevoCodigoCompra);
+            }
+        }
+        
     }
 
     /**

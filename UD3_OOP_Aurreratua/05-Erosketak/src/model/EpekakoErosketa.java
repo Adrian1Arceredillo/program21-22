@@ -22,8 +22,40 @@ public class EpekakoErosketa extends Erosketa {
     public double gainetikOrdainduBeharrekoa() {
         double epeGuztienTotala = this.epeak * this.kuota; //el total de lo que se pagará al final de todos los plazos (epeak)
         
-        return this.guztira - epeGuztienTotala;
+        return epeGuztienTotala - this.guztira;
     }
+
+    public int getEpeak() {
+        return epeak;
+    }
+
+    public void setEpeak(int epeak) {
+        this.epeak = epeak;
+    }
+
+    public boolean isOrdainketaBukatuta() {
+        if (this.gainetikOrdainduBeharrekoa() >= 0) {
+            ordainketaBukatuta = true;
+        } 
+        
+        /*if ((this.epeak * this.kuota) > this.guztira) {
+            return true;
+        }*/
+        return ordainketaBukatuta;
+    }
+
+    public void setOrdainketaBukatuta(boolean ordainketaBukatuta) {
+        this.ordainketaBukatuta = ordainketaBukatuta;
+    }
+
+    public double getKuota() {
+        return kuota;
+    }
+
+    public void setKuota(double kuota) {
+        this.kuota = kuota;
+    }
+    
     
     
     public EpekakoErosketa(String kodea, String data, Bezeroa eroslea, 

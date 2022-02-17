@@ -42,7 +42,7 @@ public class Pertsona implements Bezeroa {
     }
     
     public String getIzena() {
-        return this.izena + "\t" + this.abizena;
+        return this.izena + " " + this.abizena; /*"\t"*/
     }
     
     public String getAbizena() {

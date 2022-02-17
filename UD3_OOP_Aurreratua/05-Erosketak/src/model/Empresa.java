@@ -70,6 +70,22 @@ public class Empresa implements Bezeroa {
     }
     
     
+    public String getIzenJuridikoa() {
+        return izenJuridikoa;
+    }
+    
+    
+    public String getIzenKomertziala() {
+        return izenKomertziala;
+    }
+    
+    
+    public static String[] getKontaktoenEmailak() {
+        return kontaktoenEmailak;
+    }
+    
+       
+    
     public void setKodea(int kodea) {
         this.kodea = kodea;
     }
