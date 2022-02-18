@@ -3,49 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package exekutagarriak.gui;
 
-import exekutagarriak.ErosketaKudeatu;
-import java.awt.Dimension;
-import java.util.ArrayList;
 import javax.swing.*;
-
+import exekutagarriak.ErosketaKudeatu;
 import model.*;
+
 
 /**
  *
  * @author arceredillo.adrian
  */
-public class ProduktuenTableModelaPrueba extends javax.swing.JFrame {
-    
-    private static final ArrayList<Erosketa> erosketenZerrenda = new ArrayList<>();
+public class ProduktuenTableModelaJFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form ProduktuenTableModelaPrueba
+     * Creates new form ProduktuenTableModelaJFrame
      */
-    public ProduktuenTableModelaPrueba() {
-        //this.setPreferredSize(new Dimension(300, 400));
-        
+    public ProduktuenTableModelaJFrame() {
         initComponents();
+        String[][] produktuak = {{"J01","Ogia","1.5"},{"J02","Esnea","1.05"},{"J03","Madalenak","2.25"},{"J04","Mermelada","3.0"}};
+        String[] zutabeak = {"A","B","C"};
+        for (int i = 0; i < JTableProduktuenTaula.getColumnCount(); i++) {
+            JTableProduktuenTaula.getColumnModel().getColumn(i).setHeaderValue(zutabeak[i]);
+        }
+     
+        /*for (int i = 0; i < JTableProduktuenTaula.getColumnCount(); i++) {
+            for (int j = 0; j < JTableProduktuenTaula.getRowCount(); j++) {
+                JTableProduktuenTaula.setValueAt(produktuak[i][j], 1,1);
+            }
+        }*/
         
-        //String[][] produktuak = {{ErosketaKudeatu.}, {"C02", "HP", "600"}};
-        String[][] produktuak = {{"C01", "Toshiba", "450"}, {"C02", "HP", "600"}};
-        String[] columnNames = {"Kodea", "Produktua", "Prezioa"};
-                
-        //JTable tablaProd = new JTable(produktuak, columnNames);//ProduktuenTableModelaPrueba
         for (int i = 0; i < produktuak.length; ++i) {
             for (int j = 0; j < produktuak[i].length; ++j) {
                 
-                Tabla1.setValueAt(produktuak[i][j], i, j);
+                JTableProduktuenTaula.setValueAt(produktuak[i][j], i, j);
             }
         }
-        //Tabla1.setValueAt(produktuak[0][1], 1, 1);
-                
         
-        
-        
-        
-        
+        //JTableProduktuenTaula.setValueAt(produktuak[0][0], 1,1);
+        //JTableProduktuenTaula.setValueAt(produktuak[0][0], 0,1);
     }
 
     /**
@@ -58,12 +54,12 @@ public class ProduktuenTableModelaPrueba extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla1 = new javax.swing.JTable();
-        ProductosTitulo = new javax.swing.JLabel();
+        JTableProduktuenTaula = new javax.swing.JTable();
+        JLabelProduktuak = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Tabla1.setModel(new javax.swing.table.DefaultTableModel(
+        JTableProduktuenTaula.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -74,34 +70,30 @@ public class ProduktuenTableModelaPrueba extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3"
             }
         ));
-        Tabla1.setColumnSelectionAllowed(true);
-        Tabla1.setShowHorizontalLines(true);
-        Tabla1.setShowVerticalLines(true);
-        jScrollPane1.setViewportView(Tabla1);
-        Tabla1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        jScrollPane1.setViewportView(JTableProduktuenTaula);
 
-        ProductosTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        ProductosTitulo.setText("PRODUKTUAK");
+        JLabelProduktuak.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        JLabelProduktuak.setText("PRODUKTUAK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ProductosTitulo)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLabelProduktuak))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(ProductosTitulo)
-                .addGap(64, 64, 64)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(JLabelProduktuak)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,34 +116,27 @@ public class ProduktuenTableModelaPrueba extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProduktuenTableModelaPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduktuenTableModelaJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProduktuenTableModelaPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduktuenTableModelaJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProduktuenTableModelaPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduktuenTableModelaJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProduktuenTableModelaPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduktuenTableModelaJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProduktuenTableModelaPrueba().setVisible(true);
-
+                new ProduktuenTableModelaJFrame().setVisible(true);
             }
         });
-        
-        
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel ProductosTitulo;
-    public static javax.swing.JTable Tabla1;
+    public static javax.swing.JLabel JLabelProduktuak;
+    private javax.swing.JTable JTableProduktuenTaula;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
-
-
-//https://www.javatpoint.com/java-jtable

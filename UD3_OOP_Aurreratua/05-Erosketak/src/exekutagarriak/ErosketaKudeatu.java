@@ -14,9 +14,9 @@ import model.*;
  */
 public class ErosketaKudeatu {
 
-    private static ArrayList<Bezeroa> kontaktuak = new ArrayList<>();
-    private static ArrayList<Produktua> produktuKatalogoa = new ArrayList<>();
-    private static ArrayList<Erosketa> erosketenZerrenda = new ArrayList<>();
+    public /*private*/ static ArrayList<Bezeroa> kontaktuak = new ArrayList<>();
+    public /*private*/ static ArrayList<Produktua> produktuKatalogoa = new ArrayList<>();
+    public /*private*/ static ArrayList<Erosketa> erosketenZerrenda = new ArrayList<>();
 
     public static void main(String[] args) {
 
