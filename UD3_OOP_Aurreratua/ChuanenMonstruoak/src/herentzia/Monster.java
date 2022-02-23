@@ -1,0 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package herentzia;
+
+/**
+ *
+ * @author AdriAlex
+ */
+public class Monster {
+    
+    private String name;
+    
+    /**
+     * Constructor por defecto. 
+     * 
+     * @param name 
+     */
+    public Monster(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    /**
+     * Define un comportamiento común llamado attack() para 
+     * todas sus subclases. 
+     * 
+     * @return 
+     */
+    public String attack() {
+        return "!^_&^$@+%$* I don't know how to attack! ";
+    }
+    
+}
