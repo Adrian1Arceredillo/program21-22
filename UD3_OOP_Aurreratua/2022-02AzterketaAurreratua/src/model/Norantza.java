@@ -9,9 +9,8 @@ package model;
  *
  * @author arceredillo.adrian
  */
-public interface Marrazgarria {
+public enum Norantza {
     
-    public void marraztu();
-    //public void marraztu(Graphics g);
+    EZK, BEH, ESK, GOR
     
 }

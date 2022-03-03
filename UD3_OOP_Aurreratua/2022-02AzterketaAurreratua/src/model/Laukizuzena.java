@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -91,5 +93,20 @@ public class Laukizuzena implements Marrazgarria {
         return false;
     }
     
+    
+    public void marraztu(Graphics g) {
+        g.setColor(Color.black);
+        
+        g.drawLine(this.getErpinBat().getX(), this.getErpinBat().getY(), this.getKontrakoErpina().getX(), this.getErpinBat().getY());
+        g.drawLine(this.getKontrakoErpina().getX(), this.getErpinBat().getY(), this.getKontrakoErpina().getX(), this.getKontrakoErpina().getY());
+        g.drawLine(this.getKontrakoErpina().getX(), this.getKontrakoErpina().getY(), this.getErpinBat().getX(), this.getKontrakoErpina().getY());
+        g.drawLine(this.getErpinBat().getX(), this.getKontrakoErpina().getY(), this.getErpinBat().getX(), this.getErpinBat().getY());
+        
+    }
+    
+    
+    public void jiratu() {
+        
+    }
     
 }

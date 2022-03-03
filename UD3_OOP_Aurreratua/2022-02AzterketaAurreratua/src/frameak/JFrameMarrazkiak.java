@@ -8,6 +8,7 @@ package frameak;
 import java.awt.Color;
 import java.awt.Graphics;
 import model.Kutxa;
+import model.Laukizuzena;
 import model.Puntua;
 
 /**
@@ -22,6 +23,10 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
     public JFrameMarrazkiak() {
         initComponents();
         this.setResizable(false);
+        JComboBoxFiguras.addItem("Puntua");
+        JComboBoxFiguras.addItem("Laukizuzena");
+        JComboBoxFiguras.addItem("Kutxa");
+        
     }
 
     /**
@@ -34,7 +39,11 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
     private void initComponents() {
 
         JTextFieldAltuera = new javax.swing.JTextField();
-        JLabel1 = new javax.swing.JLabel();
+        JLabelAltuera = new javax.swing.JLabel();
+        JLabelLuzera = new javax.swing.JLabel();
+        JLabelZabalera = new javax.swing.JLabel();
+        JComboBoxFiguras = new javax.swing.JComboBox<>();
+        JLabelElegirIrudia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -45,27 +54,52 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
 
         JTextFieldAltuera.setText("Altuera");
 
-        JLabel1.setText("Altuera");
+        JLabelAltuera.setText("Altuera");
+
+        JLabelLuzera.setText("Luzera");
+
+        JLabelZabalera.setText("Zabalera");
+
+        JComboBoxFiguras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboBoxFigurasActionPerformed(evt);
+            }
+        });
+
+        JLabelElegirIrudia.setText("Elegir figura: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(308, Short.MAX_VALUE)
+                .addContainerGap(472, Short.MAX_VALUE)
+                .addComponent(JLabelElegirIrudia)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JLabel1)
-                    .addComponent(JTextFieldAltuera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                    .addComponent(JComboBoxFiguras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLabelZabalera)
+                    .addComponent(JLabelAltuera)
+                    .addComponent(JTextFieldAltuera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLabelLuzera))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(JLabel1)
+                .addGap(22, 22, 22)
+                .addComponent(JLabelLuzera)
+                .addGap(40, 40, 40)
+                .addComponent(JLabelZabalera)
+                .addGap(82, 82, 82)
+                .addComponent(JLabelAltuera)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JTextFieldAltuera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JComboBoxFiguras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLabelElegirIrudia))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,13 +107,45 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
+        
         int coordX = evt.getX();
         int coordY = evt.getY();
-        int altura = Integer.parseInt(JTextFieldAltuera.getText());
-        Kutxa k1 = new Kutxa(new Puntua(coordX, coordY),new Puntua(coordX + 100, coordY - 40), altura);
+        //int altura = Integer.parseInt(JTextFieldAltuera.getText());
+        //Kutxa k1 = new Kutxa(new Puntua(coordX, coordY),new Puntua(coordX + 100, coordY - 40), altura);
+        
+        Laukizuzena rec1 = new Laukizuzena(new Puntua(coordX, coordY),new Puntua(coordX + 100,coordY - 40));
+        Puntua p1 = new Puntua(coordX, coordY);
+        
         Graphics g = this.getGraphics();
-        k1.marraztu(g);
+        //k1.marraztu(g);
+        //rec1.marraztu(g);
+        //p1.marraztu(g);
+        
+        
+        if (JComboBoxFiguras.getSelectedIndex() == 0) {
+            p1.marraztu(g);
+        } else if (JComboBoxFiguras.getSelectedIndex() == 1) {
+            rec1.marraztu(g);
+        } else if (JComboBoxFiguras.getSelectedIndex() == 2) {
+            
+            
+            int altura = Integer.parseInt(JTextFieldAltuera.getText());
+            Kutxa k1 = new Kutxa(new Puntua(coordX, coordY),new Puntua(coordX + 100, coordY - 40), altura);
+            k1.marraztu(g);
+        }
+        
+        
     }//GEN-LAST:event_formMouseClicked
+
+    private void JComboBoxFigurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboBoxFigurasActionPerformed
+        // TODO add your handling code here:
+        if (JComboBoxFiguras.getSelectedIndex() == 2) {
+            JTextFieldAltuera.setEditable(true);
+            JTextFieldAltuera.setEnabled(true);
+            JTextFieldAltuera.setText("");
+        }
+        
+    }//GEN-LAST:event_JComboBoxFigurasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,12 +178,19 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JFrameMarrazkiak().setVisible(true);
+                JTextFieldAltuera.setText("Sartu balio bat: ");
+                JTextFieldAltuera.setEditable(false);
+                JTextFieldAltuera.setEnabled(false);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel JLabel1;
-    private javax.swing.JTextField JTextFieldAltuera;
+    public static javax.swing.JComboBox<String> JComboBoxFiguras;
+    public static javax.swing.JLabel JLabelAltuera;
+    public static javax.swing.JLabel JLabelElegirIrudia;
+    public static javax.swing.JLabel JLabelLuzera;
+    public static javax.swing.JLabel JLabelZabalera;
+    public static javax.swing.JTextField JTextFieldAltuera;
     // End of variables declaration//GEN-END:variables
 }

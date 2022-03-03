@@ -5,6 +5,10 @@
  */
 package model;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.Scanner;
+
 /**
  *
  * @author arceredillo.adrian
@@ -107,20 +111,41 @@ public class Puntua implements Marrazgarria {
     
     
     /**
-     * Método ADICIONAL AL EXAMEN (ariketa gehigarriak). Este método 
-     * recibirá los parámetros necesarios para desplazar el punto.
+     * Método ADICIONAL AL EXAMEN (ariketa gehigarriak).Este método
+     * recibirá los parámetros necesarios para desplazar el punto.Estos parámetros serán: cuánto y hacia dónde 
      * 
-     * Estos parámetros serán: cuánto y hacia dónde
+     * La dirección en la que moverá el punto, irá relacionada con 
+     * los datos guardados en la enumeración "Norantza".
      * 
-     * @param x
-     * @param y 
+     * @param zenbat
+     * @param norantza
      */
-    public void mugitu(int x, int y) {
-        
+    public void mugitu(int zenbat, Norantza norantza) {
+        //this.setX(nuevaX);
+        //this.setY(nuevaY);
+        if (norantza == Norantza.EZK) {
+            this.setX(this.getX() - zenbat);
+        } else if (norantza == Norantza.ESK) {
+            this.setX(this.getX() + zenbat);
+        } else if (norantza == Norantza.BEH) {
+            this.setY(this.getY() - zenbat);
+        } else if (norantza == Norantza.GOR) {
+            this.setY(this.getY() + zenbat);
+        }
     }
     
-    
-    
+    /**
+     * Método Gehigarria para representar en un GUI los puntos que 
+     * vayamos creando; en este caso, los puntos se crearán donde 
+     * el usuario haga clic. 
+     * 
+     * @param g 
+     */
+    public void marraztu(Graphics g) {
+        g.setColor(Color.black);
+        g.drawString(this.toString(), x, y - 5);
+        g.fillOval(x, y, 5, 5);
+    }
     
     
 }
