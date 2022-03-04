@@ -7,6 +7,7 @@ package frameak;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.border.EmptyBorder;
 import model.Kutxa;
 import model.Laukizuzena;
 import model.Puntua;
@@ -27,6 +28,10 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
         JComboBoxFiguras.addItem("Laukizuzena");
         JComboBoxFiguras.addItem("Kutxa");
         
+        //JButtonLimpiar
+        JButtonLimpiar.setBackground(new Color(0x9dce14));
+        JButtonLimpiar.setBorder(new EmptyBorder(5, 15, 5, 15));
+        
     }
 
     /**
@@ -40,10 +45,10 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
 
         JTextFieldAltuera = new javax.swing.JTextField();
         JLabelAltuera = new javax.swing.JLabel();
-        JLabelLuzera = new javax.swing.JLabel();
-        JLabelZabalera = new javax.swing.JLabel();
         JComboBoxFiguras = new javax.swing.JComboBox<>();
         JLabelElegirIrudia = new javax.swing.JLabel();
+        JLabelGarbitu = new javax.swing.JLabel();
+        JButtonLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -56,10 +61,6 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
 
         JLabelAltuera.setText("Altuera");
 
-        JLabelLuzera.setText("Luzera");
-
-        JLabelZabalera.setText("Zabalera");
-
         JComboBoxFiguras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JComboBoxFigurasActionPerformed(evt);
@@ -68,38 +69,49 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
 
         JLabelElegirIrudia.setText("Elegir figura: ");
 
+        JLabelGarbitu.setText("Garbitu: ");
+
+        JButtonLimpiar.setText("Clic!");
+        JButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(472, Short.MAX_VALUE)
-                .addComponent(JLabelElegirIrudia)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JLabelGarbitu)
+                    .addComponent(JLabelElegirIrudia))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JComboBoxFiguras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLabelZabalera)
                     .addComponent(JLabelAltuera)
                     .addComponent(JTextFieldAltuera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLabelLuzera))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(JButtonLimpiar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addComponent(JComboBoxFiguras, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(JLabelLuzera)
-                .addGap(40, 40, 40)
-                .addComponent(JLabelZabalera)
-                .addGap(82, 82, 82)
+                .addGap(146, 146, 146)
                 .addComponent(JLabelAltuera)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JTextFieldAltuera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JComboBoxFiguras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JLabelElegirIrudia))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLabelGarbitu)
+                    .addComponent(JButtonLimpiar))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,9 +155,17 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
             JTextFieldAltuera.setEditable(true);
             JTextFieldAltuera.setEnabled(true);
             JTextFieldAltuera.setText("");
+        } else {
+            JTextFieldAltuera.setEditable(false);
+            JTextFieldAltuera.setEnabled(false);
         }
         
     }//GEN-LAST:event_JComboBoxFigurasActionPerformed
+
+    private void JButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        repaint();
+    }//GEN-LAST:event_JButtonLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,16 +201,17 @@ public class JFrameMarrazkiak extends javax.swing.JFrame {
                 JTextFieldAltuera.setText("Sartu balio bat: ");
                 JTextFieldAltuera.setEditable(false);
                 JTextFieldAltuera.setEnabled(false);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton JButtonLimpiar;
     public static javax.swing.JComboBox<String> JComboBoxFiguras;
     public static javax.swing.JLabel JLabelAltuera;
     public static javax.swing.JLabel JLabelElegirIrudia;
-    public static javax.swing.JLabel JLabelLuzera;
-    public static javax.swing.JLabel JLabelZabalera;
+    public static javax.swing.JLabel JLabelGarbitu;
     public static javax.swing.JTextField JTextFieldAltuera;
     // End of variables declaration//GEN-END:variables
 }

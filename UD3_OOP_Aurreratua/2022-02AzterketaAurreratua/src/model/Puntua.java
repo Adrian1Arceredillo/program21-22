@@ -142,7 +142,7 @@ public class Puntua implements Marrazgarria {
      * @param g 
      */
     public void marraztu(Graphics g) {
-        g.setColor(Color.black);
+        g.setColor(Color.red);
         g.drawString(this.toString(), x, y - 5);
         g.fillOval(x, y, 5, 5);
     }

@@ -69,7 +69,7 @@ public class Kutxa extends Laukizuzena implements Marrazgarria {
      * @param g 
      */
     public void marraztu(Graphics g) {
-        g.setColor(Color.black);
+        g.setColor(Color.BLUE);
         //Laukia inferior
         g.drawLine(super.getErpinBat().getX(), super.getErpinBat().getY(), super.getKontrakoErpina().getX(), super.getErpinBat().getY());
         g.drawLine(super.getKontrakoErpina().getX(), super.getErpinBat().getY(), super.getKontrakoErpina().getX()+15, super.getKontrakoErpina().getY());
@@ -137,6 +137,25 @@ public class Kutxa extends Laukizuzena implements Marrazgarria {
         }
         
         return kutxaHandiena;
+    }
+    
+    /**
+     * Método Gehigarriak para ordenar (según volumen) las Kutxa que se 
+     * vayan creando en el JFrame1.
+     * 
+     * @param kutxenSorta 
+     */
+    public static void ordenarArrayListKutxa(ArrayList<Kutxa> kutxenSorta) {
+        Kutxa aux;
+        for (int i = 0; i < kutxenSorta.size(); i++) {
+            for (int j = 0; j < kutxenSorta.size()-1; j++) {
+                if(/*kutxenSorta.get(j) != null && kutxenSorta.get(j+1) != null && */(kutxenSorta.get(j).getBolumena() > kutxenSorta.get(j+1).getBolumena())){
+                    aux = kutxenSorta.get(j+1);
+                    kutxenSorta.set(j+1, kutxenSorta.get(j));
+                    kutxenSorta.set(j,aux);
+                }
+            }
+        }
     }
     
 }
