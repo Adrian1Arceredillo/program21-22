@@ -106,7 +106,11 @@ public class Laukizuzena implements Marrazgarria {
     
     
     public void jiratu() {
+        int nuevaXkontrako = this.kontrakoErpina.getY() - this.erpinBat.getY();
+        int nuevaYkontrako = this.kontrakoErpina.getX() - this.erpinBat.getX();
         
+        this.kontrakoErpina.setX(nuevaXkontrako);
+        this.kontrakoErpina.setY(nuevaYkontrako);
     }
     
 }

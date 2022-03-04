@@ -26,6 +26,9 @@ public class Test4 {
 
         //crear 2 Laukizuzena
         Laukizuzena rec1 = new Laukizuzena(new Puntua(2, 1), new Puntua(10, 6));
+        System.out.println(rec1);
+        rec1.jiratu();
+        System.out.println(rec1);
         Laukizuzena rec2 = new Laukizuzena(3, 3, 12, 16);
 
         //comprobar Puntua dentro de Laukizuzena

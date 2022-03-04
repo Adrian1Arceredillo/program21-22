@@ -28,14 +28,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="472" max="32767" attributes="0"/>
-              <Component id="JLabelElegirIrudia" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="JLabelGarbitu" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLabelElegirIrudia" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="JComboBoxFiguras" min="-2" max="-2" attributes="0"/>
-                  <Component id="JLabelZabalera" min="-2" max="-2" attributes="0"/>
                   <Component id="JLabelAltuera" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTextFieldAltuera" min="-2" max="-2" attributes="0"/>
-                  <Component id="JLabelLuzera" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTextFieldAltuera" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="JButtonLimpiar" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="JComboBoxFiguras" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -44,20 +48,21 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="JLabelLuzera" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="JLabelZabalera" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
               <Component id="JLabelAltuera" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="JTextFieldAltuera" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JComboBoxFiguras" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JLabelElegirIrudia" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="70" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JLabelGarbitu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JButtonLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,22 +79,6 @@
     <Component class="javax.swing.JLabel" name="JLabelAltuera">
       <Properties>
         <Property name="text" type="java.lang.String" value="Altuera"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="JLabelLuzera">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Luzera"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="JLabelZabalera">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Zabalera"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -113,6 +102,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Elegir figura: "/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JLabelGarbitu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Garbitu: "/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="JButtonLimpiar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Clic!"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonLimpiarActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
